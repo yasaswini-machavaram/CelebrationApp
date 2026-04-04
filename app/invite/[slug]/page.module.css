@@ -1,0 +1,459 @@
+/* ═══════════════════════════════════════════════════
+   HINDU ROYAL INVITE — FULL-SCREEN SVG LAYERS
+   
+   KEY INSIGHT: All SVGs share the SAME viewBox (0 0 1024.5 576)
+   and dimensions (1366x768). They are designed as overlapping
+   full-screen layers like Photoshop. We DON'T position individual
+   elements — the SVG content itself defines where things sit.
+   ═══════════════════════════════════════════════════ */
+
+.invitePage {
+  min-height: 100vh;
+  background: #FDF8F0;
+  color: #2C1810;
+  overflow-x: hidden;
+  font-family: 'Inter', 'Jost', sans-serif;
+}
+
+/* ═══ SCROLL ARCHITECTURE ═══ */
+.scrollContainer {
+  height: 300vh;
+  position: relative;
+}
+
+.stickyViewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ═══ SVG LAYER — the single most important class ═══
+   Every SVG is absolutely positioned, stretching to fill the viewport.
+   NO object-fit — all SVGs share the same viewBox (0 0 1024.5 576),
+   so they must stretch identically to keep their content aligned.
+   The SVG's internal content defines element placement. */
+.svgLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* NO object-fit! All layers stretch the same = perfect alignment */
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* ═══ TRANSFORM ORIGINS ═══
+   These control WHERE each layer zooms FROM during the scroll animation. */
+
+/* Temple grows upward from bottom center */
+.templeOrigin {
+  transform-origin: center bottom;
+}
+
+/* Left corner + peacock grow from top-left */
+.originTopLeft {
+  transform-origin: top left;
+}
+
+/* Right corner + peacock grow from top-right */
+.originTopRight {
+  transform-origin: top right;
+}
+
+/* Left peacock grows from bottom-left */
+.originBottomLeft {
+  transform-origin: bottom left;
+}
+
+/* Right peacock grows from bottom-right */
+.originBottomRight {
+  transform-origin: bottom right;
+}
+
+/* ═══ TEXT LAYER ═══ */
+.textLayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  z-index: 20;
+  text-align: center;
+  width: 90%;
+  max-width: 650px;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.inviteLabel {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: #C5A55A;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.coupleNameBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.heroName {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700;
+  color: #2C1810;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.heroAmpersand {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #C5A55A;
+  display: block;
+  margin: 0.15rem 0;
+}
+
+.heroTagline {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: #C5A55A;
+  margin-top: 1.25rem;
+}
+
+.heroDate {
+  font-size: 0.85rem;
+  color: #6B5B4E;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 0.75rem;
+}
+
+/* ═══ PAGE 2 CONTENT ═══ */
+.page2Content {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  will-change: opacity;
+}
+
+.blessingText {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: #FDF8F0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.familyBlessings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #FDF8F0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  margin-bottom: 1.5rem;
+}
+
+.blessingDivider {
+  color: #C5A55A;
+  font-size: 0.7rem;
+  text-shadow: none;
+}
+
+.page2Names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.page2NameText {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #FDF8F0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.page2Ampersand {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: #C5A55A;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* ═══ SCROLL INDICATOR ═══ */
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: #C5A55A;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scrollArrow {
+  font-size: 1.2rem;
+  color: #C5A55A;
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTENT SECTIONS (below scroll hero)
+   ═══════════════════════════════════════════════════ */
+.contentSection {
+  padding: 5rem 2rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #FDF8F0;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C5A55A;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #2C1810;
+  margin-bottom: 2rem;
+}
+
+.goldText { color: #C5A55A; }
+
+.storyText {
+  font-size: 1.05rem;
+  color: #6B5B4E;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  background: #FDF8F0;
+}
+
+.dividerIcon {
+  font-size: 1.5rem;
+  color: #C5A55A;
+  opacity: 0.6;
+}
+
+.familyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.familyCard {
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(197, 165, 90, 0.3);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(197, 165, 90, 0.05), #FDF8F0);
+  text-align: center;
+}
+
+.familyCardLabel {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C5A55A;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.familyCardName {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2C1810;
+  margin-bottom: 0.5rem;
+}
+
+.familyCardParents { font-size: 0.9rem; color: #6B5B4E; }
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.eventCard {
+  position: relative;
+  padding: 2.5rem 1.5rem 2rem;
+  border: 1px solid rgba(197, 165, 90, 0.25);
+  border-radius: 120px 120px 16px 16px;
+  background: linear-gradient(180deg, rgba(212, 223, 199, 0.3) 0%, #FDF8F0 60%);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.eventCard:hover {
+  border-color: rgba(197, 165, 90, 0.5);
+  box-shadow: 0 8px 30px rgba(197, 165, 90, 0.15);
+  transform: translateY(-4px);
+}
+
+.eventCardFloral {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: rgba(197, 165, 90, 0.4);
+}
+
+.eventCardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #C5A55A;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.eventCardDetail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #6B5B4E;
+}
+
+.eventMapLink {
+  display: inline-block;
+  color: #C5A55A;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.eventMapLink:hover { opacity: 0.7; }
+
+.closingSection {
+  padding: 5rem 2rem;
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FDF8F0;
+}
+
+.closingScript {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #C5A55A;
+  margin-bottom: 1.5rem;
+}
+
+.closingNames {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: #2C1810;
+  margin-bottom: 2rem;
+}
+
+.closingHashtag { font-size: 0.9rem; color: #8B7B6E; letter-spacing: 1px; }
+
+.inviteFooter {
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(197, 165, 90, 0.2);
+  background: #FDF8F0;
+}
+
+.footerText { font-size: 0.75rem; color: #8B7B6E; }
+.footerBrand { color: #C5A55A; }
+
+.loadingPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FDF8F0;
+  color: #C5A55A;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(197, 165, 90, 0.2);
+  border-top-color: #C5A55A;
+  border-radius: 50%;
+}
+
+.errorPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #FDF8F0;
+  color: #2C1810;
+  text-align: center;
+  padding: 2rem;
+}
+
+.errorTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.errorDesc { color: #6B5B4E; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .familyGrid { grid-template-columns: 1fr; }
+  .eventsGrid { grid-template-columns: 1fr; max-width: 350px; }
+  .page2Content { top: 5%; }
+}
+
+@media (max-width: 480px) {
+  .scrollContainer { height: 280vh; }
+  .textLayer { transform: translate(-50%, -60%); }
+}

@@ -1,0 +1,355 @@
+.subsPage {
+  min-height: 100vh;
+  padding: 100px 2rem 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.headerLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #D28A8C;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.headerTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.headerDesc {
+  font-size: 1rem;
+  color: #6B5E62;
+}
+
+/* Card Grid */
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(210, 138, 140, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(210, 138, 140, 0.25);
+  box-shadow: 0 4px 30px rgba(210, 138, 140, 0.08);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(210, 138, 140, 0.08);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cardCouple {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.cardCouple span {
+  color: #D28A8C;
+}
+
+.cardBadge {
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgePaid {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.badgeFree {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.badgeExpired {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.cardBody {
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.cardField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fieldLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6B5E62;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.fieldValue {
+  font-size: 0.9rem;
+  color: #2D2A2E;
+  word-break: break-all;
+}
+
+.fieldMono {
+  font-family: 'Roboto Mono', 'SF Mono', monospace;
+  font-size: 0.8rem;
+  color: #6B5E62;
+  word-break: break-all;
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(210, 138, 140, 0.08);
+  flex-wrap: wrap;
+}
+
+.viewBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #D28A8C, #FDBA90);
+  color: #FFFFFF;
+}
+
+.viewBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(210, 138, 140, 0.3);
+}
+
+.buyBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.buyBtn:hover {
+  background: rgba(34, 197, 94, 0.2);
+  transform: translateY(-1px);
+}
+
+.buyBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.copyBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(210, 138, 140, 0.15);
+  background: rgba(210, 138, 140, 0.04);
+  color: #6B5E62;
+  transition: all 0.3s ease;
+}
+
+.copyBtn:hover {
+  background: rgba(210, 138, 140, 0.1);
+}
+
+.editBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.08);
+  color: #3b82f6;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.editBtn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.contactAdminBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: default;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  background: rgba(107, 114, 128, 0.06);
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.emptyTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.emptyDesc {
+  color: #6B5E62;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.loadingState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #A0A0A0;
+  font-size: 1rem;
+}
+
+/* Navbar */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  background: rgba(253, 248, 246, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(210, 138, 140, 0.12);
+  box-shadow: 0 2px 20px rgba(210, 138, 140, 0.06);
+}
+
+.navInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navLogo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  color: #D28A8C;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navLink {
+  font-size: 0.9rem;
+  color: #6B5E62;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #D28A8C;
+}
+
+.logoutBtn {
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+  transition: all 0.3s;
+}
+
+.logoutBtn:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+@media (max-width: 600px) {
+  .subsPage {
+    padding: 90px 1rem 3rem;
+  }
+
+  .cardBody {
+    grid-template-columns: 1fr;
+  }
+
+  .cardTop {
+    padding: 1rem;
+  }
+
+  .cardBody {
+    padding: 1rem;
+  }
+
+  .cardActions {
+    padding: 0.75rem 1rem;
+  }
+}

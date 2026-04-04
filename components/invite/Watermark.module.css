@@ -1,0 +1,36 @@
+.watermarkOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.watermarkGrid {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 60px;
+  transform: rotate(-30deg);
+}
+
+.watermarkText {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  user-select: none;
+}
