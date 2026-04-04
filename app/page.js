@@ -105,8 +105,8 @@ export default function LandingPage() {
     },
     {
       icon: '🎨',
-      title: 'Cultural Templates',
-      desc: 'Templates for Hindu, Christian, Muslim, Sikh, and South-Indian weddings with cultural motifs.',
+      title: 'Event-Based Templates',
+      desc: 'Templates for weddings, birthdays, corporate events, and more — each with unique styles and motifs.',
     },
     {
       icon: '🔗',
@@ -231,7 +231,7 @@ export default function LandingPage() {
         >
           <motion.span className={styles.sectionTag} variants={fadeUp}>Templates</motion.span>
           <motion.h2 className={styles.sectionTitle} variants={fadeUp} custom={1}>
-            Designed for Your <span className="gradient-text">Big Day</span>
+            Designed for Your <span className="gradient-text">Celebration</span>
           </motion.h2>
           <motion.p className={styles.sectionSubtitle} variants={fadeUp} custom={2}>
             Pick a style that matches your celebration. Customize everything with your details.
@@ -280,7 +280,7 @@ export default function LandingPage() {
                     )}
                   </div>
                   <div className={styles.templateInfo}>
-                    <div className={styles.templateCategory}>{template.category}</div>
+                    <div className={styles.templateCategory}>{template.style || template.category}</div>
                     <h3 className={styles.templateName}>{template.name}</h3>
                     <p className={styles.templateDesc}>{template.description}</p>
                     <div className={styles.templateFeatures}>

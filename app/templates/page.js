@@ -62,10 +62,10 @@ export default function TemplatesPage() {
             Choose Your Design
           </span>
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, margin: '0.5rem 0', color: '#2D2A2E' }}>
-            Wedding <span className="gradient-text">Templates</span>
+            Celebration <span className="gradient-text">Templates</span>
           </h1>
           <p style={{ fontSize: '1.1rem', color: '#6B5E62', maxWidth: 550, margin: '0 auto' }}>
-            Select a template to start creating your personalized wedding invitation.
+            Select a template to start creating your personalized invitation.
           </p>
         </motion.div>
 
@@ -147,7 +147,7 @@ export default function TemplatesPage() {
                   </div>
                   <div style={{ padding: '1.5rem' }}>
                     <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#D28A8C', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
-                      {template.category}
+                      {template.style || template.category}
                     </div>
                     <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.3rem', fontWeight: 600, marginBottom: 8, color: '#2D2A2E' }}>
                       {template.name}

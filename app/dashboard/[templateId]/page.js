@@ -27,11 +27,11 @@ const defaultEvent = {
 };
 
 const SUGGESTED_EVENTS = {
-  'Hindu Wedding': ['Haldi', 'Mehendi', 'Sangeet', 'Wedding Ceremony', 'Reception'],
-  'Christian Wedding': ['Rehearsal Dinner', 'Wedding Ceremony', 'Reception'],
-  'Muslim Wedding': ['Nikah', 'Walima', 'Reception'],
-  'Sikh Wedding': ['Anand Karaj', 'Reception'],
-  'South-Indian Wedding': ['Nischayam', 'Muhurtham', 'Reception'],
+  'Temple': ['Haldi', 'Mehendi', 'Sangeet', 'Wedding Ceremony', 'Reception'],
+  'Church': ['Rehearsal Dinner', 'Wedding Ceremony', 'Reception'],
+  'Regal Arch': ['Nikah', 'Walima', 'Reception'],
+  'Golden Grandeur': ['Anand Karaj', 'Reception'],
+  'Classic Mandapam': ['Nischayam', 'Muhurtham', 'Reception'],
 };
 
 const FORM_STORAGE_KEY = 'celebrationapp_draft_form';
@@ -398,7 +398,7 @@ export default function DashboardPage() {
 
   const totalSteps = 4;
 
-  const suggestedEvents = SUGGESTED_EVENTS[template.category] || SUGGESTED_EVENTS['Hindu Wedding'];
+  const suggestedEvents = SUGGESTED_EVENTS[template.style] || SUGGESTED_EVENTS['Temple'];
 
   // ─── SUCCESS SCREEN ──────────────────────────────────────────────────────
   if (success) {
@@ -556,7 +556,7 @@ export default function DashboardPage() {
       </Link>
 
       <motion.div className={styles.header} initial="hidden" animate="visible" variants={fadeUp}>
-        <div className={styles.templateLabel}>{template.category}</div>
+        <div className={styles.templateLabel}>{template.style || template.category}</div>
         <h1 className={styles.pageTitle}>
           Customize <span className="gradient-text">{template.name}</span>
         </h1>
@@ -712,7 +712,7 @@ export default function DashboardPage() {
               <div className={styles.formCard}>
                 <h2 className={styles.formTitle}>Wedding Events</h2>
                 <p className={styles.formDesc}>
-                  Add the events for your celebration. Suggested for {template.category}:{' '}
+                  Add the events for your celebration. Suggested for {template.style || template.name}:{' '}
                   <span style={{ color: 'var(--color-accent)' }}>{suggestedEvents.join(', ')}</span>
                 </p>
 

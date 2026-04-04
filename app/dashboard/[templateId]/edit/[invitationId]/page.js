@@ -352,7 +352,7 @@ export default function EditInvitationPage() {
       </Link>
 
       <motion.div className={styles.header} initial="hidden" animate="visible" variants={fadeUp}>
-        <div className={styles.templateLabel}>Editing · {tpl.category || 'Template'}</div>
+        <div className={styles.templateLabel}>Editing · {tpl.style || tpl.name || 'Template'}</div>
         <h1 className={styles.pageTitle}>
           Edit Your <span className="gradient-text">Invitation</span>
         </h1>

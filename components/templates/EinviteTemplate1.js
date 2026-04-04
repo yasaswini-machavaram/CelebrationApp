@@ -197,7 +197,7 @@ export default function EinviteTemplate1({ invitation = {} }) {
 
         {/* ========== ANIMATED TEMPLE ========== */}
         <motion.div className={styles.templeContainer} style={{ top: templeTop }}>
-          <img src="/assets/einvite-template1/fresh/temple.png" alt="Hindu Temple" />
+          <img src="/assets/einvite-template1/fresh/temple.png" alt="Temple" />
         </motion.div>
 
         {/* ========== PAGE 3: RED CARPET ========== */}
