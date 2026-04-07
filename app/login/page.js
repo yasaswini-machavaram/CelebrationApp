@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -8,6 +8,14 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import styles from '../signup/page.module.css';
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className={styles.authPage} />}>
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { login } = useAuth();
