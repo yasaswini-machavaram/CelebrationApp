@@ -155,6 +155,7 @@ export default function AdminDashboard() {
   }
 
   const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+  const fmtDateTime = (d) => d ? new Date(d).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
   const fmtAmount = (p) => `₹${(p / 100).toFixed(2)}`;
 
   return (
@@ -223,7 +224,7 @@ export default function AdminDashboard() {
                 <div className={styles.tableWrapper}>
                   <table className={styles.table}>
                     <thead>
-                      <tr><th>Slug</th><th>User</th><th>Template</th><th>Paid</th><th>Active</th><th>Created</th><th>Actions</th></tr>
+                      <tr><th>Slug</th><th>User</th><th>Template</th><th>Status</th><th>Expires At</th><th>Deletion At</th><th>Created</th><th>Actions</th></tr>
                     </thead>
                     <tbody>
                       {invitations.map(inv => (
@@ -231,8 +232,12 @@ export default function AdminDashboard() {
                           <td className={styles.bold}>{inv.slug}</td>
                           <td>{inv.userId?.username || '—'}</td>
                           <td>{inv.templateId}</td>
-                          <td><span className={inv.isPaid ? styles.badgeGreen : styles.badgeRed}>{inv.isPaid ? 'Paid' : 'Free'}</span></td>
-                          <td><span className={inv.isActive ? styles.badgeGreen : styles.badgeRed}>{inv.isActive ? 'Active' : 'Inactive'}</span></td>
+                          <td>
+                            <span className={inv.isPaid ? styles.badgeGreen : styles.badgeRed}>{inv.isPaid ? 'Paid' : 'Free'}</span>
+                            <span className={inv.isActive ? styles.badgeGreen : styles.badgeRed} style={{ marginLeft: '4px' }}>{inv.isActive ? 'Active' : 'Inactive'}</span>
+                          </td>
+                          <td style={{ color: inv.paidExpiresAt && new Date() > new Date(inv.paidExpiresAt) ? '#ef4444' : 'inherit' }}>{fmtDateTime(inv.paidExpiresAt)}</td>
+                          <td style={{ color: '#ef4444' }}>{fmtDateTime(inv.deletionAt)}</td>
                           <td>{fmtDate(inv.createdAt)}</td>
                           <td className={styles.actions}>
                             <button className={styles.toggleBtn} onClick={() => toggleInvitation(inv._id, inv.isActive)}>

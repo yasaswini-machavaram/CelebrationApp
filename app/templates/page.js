@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { templates, categories } from '@/lib/data/templates';
@@ -13,10 +13,32 @@ const scaleIn = {
 
 export default function TemplatesPage() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [allTemplates, setAllTemplates] = useState(templates);
+  const [filtered, setFiltered] = useState(templates);
   const { user, logout } = useAuth();
-  const filtered = activeCategory === 'All'
-    ? templates
-    : templates.filter(t => t.category === activeCategory);
+
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      try {
+        const res = await fetch('/api/templates');
+        const data = await res.json();
+        if (data.success) {
+          setAllTemplates(data.templates);
+        }
+      } catch (err) {
+        console.error('Failed to fetch dynamic templates:', err);
+      }
+    };
+    fetchTemplates();
+  }, []);
+
+  useEffect(() => {
+    if (activeCategory === 'All') {
+      setFiltered(allTemplates);
+    } else {
+      setFiltered(allTemplates.filter(t => t.category === activeCategory));
+    }
+  }, [activeCategory, allTemplates]);
 
   return (
     <div style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '4rem' }}>
@@ -33,7 +55,7 @@ export default function TemplatesPage() {
             {user ? (
               <>
                 <Link href="/subscriptions" style={{ fontSize: '0.9rem', color: '#D28A8C', fontWeight: 600, cursor: 'pointer' }} title="My Subscriptions">
-                  👤 {user.username}
+                  My Subscriptions ({user.username})
                 </Link>
                 <button
                   onClick={logout}
@@ -122,7 +144,7 @@ export default function TemplatesPage() {
                   <div
                     style={{
                       width: '100%',
-                      height: 380,
+                      height: 280,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -146,58 +168,48 @@ export default function TemplatesPage() {
                     )}
                   </div>
                   <div style={{ padding: '1.5rem' }}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#D28A8C', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
-                      {template.style || template.category}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                      <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.3rem', fontWeight: 600, color: '#2D2A2E', margin: 0 }}>
+                        {template.name}
+                      </h3>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#D28A8C' }}>
+                        {template.price > 0 ? `₹${(template.price / 100).toFixed(0)}` : 'Free'}
+                      </div>
                     </div>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.3rem', fontWeight: 600, marginBottom: 8, color: '#2D2A2E' }}>
-                      {template.name}
-                    </h3>
                     <p style={{ fontSize: '0.85rem', color: '#6B5E62', lineHeight: 1.5, marginBottom: 16 }}>
                       {template.description}
                     </p>
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                      {template.features.slice(0, 3).map((f) => (
-                        <span key={f} style={{
-                          padding: '2px 10px', background: 'rgba(210,138,140,0.06)',
-                          border: '1px solid rgba(210,138,140,0.12)', borderRadius: '9999px',
-                          fontSize: '0.7rem', color: '#6B5E62',
-                        }}>
-                          {f}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </Link>
                 {/* Action Buttons */}
                 {!template.comingSoon && (
                   <div style={{ display: 'flex', gap: '0.5rem', padding: '0 1.5rem 1.5rem' }}>
-                    {template.sampleSlug && (
-                      <a
-                        href={`/invite/${template.sampleSlug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          flex: 1,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '0.4rem',
-                          padding: '0.65rem 1rem',
-                          fontSize: '0.82rem',
-                          fontWeight: 600,
-                          color: '#D28A8C',
-                          background: 'rgba(210,138,140,0.08)',
-                          border: '1px solid rgba(210,138,140,0.2)',
-                          borderRadius: '10px',
-                          textDecoration: 'none',
-                          transition: 'all 0.2s ease',
-                          fontFamily: "'Inter', sans-serif",
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        👁 View Sample
-                      </a>
-                    )}
+                    <a
+                      href={template.sampleSlug ? `/invite/${template.sampleSlug}` : '#'}
+                      target={template.sampleSlug ? '_blank' : undefined}
+                      rel="noopener noreferrer"
+                      style={{
+                        flex: 1,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '0.65rem 1rem',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        color: '#D28A8C',
+                        background: 'rgba(210,138,140,0.08)',
+                        border: '1px solid rgba(210,138,140,0.2)',
+                        borderRadius: '10px',
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                        fontFamily: "'Inter', sans-serif",
+                        whiteSpace: 'nowrap',
+                        ...( !template.sampleSlug ? { opacity: 0.5, cursor: 'not-allowed' } : {} )
+                      }}
+                      onClick={e => !template.sampleSlug && e.preventDefault()}
+                    >
+                      View
+                    </a>
                     <Link
                       href={`/dashboard/${template.id}`}
                       style={{
@@ -220,7 +232,7 @@ export default function TemplatesPage() {
                         boxShadow: '0 2px 10px rgba(210,138,140,0.2)',
                       }}
                     >
-                      Use This Template →
+                      Use
                     </Link>
                   </div>
                 )}

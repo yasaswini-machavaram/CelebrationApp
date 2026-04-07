@@ -61,8 +61,20 @@ export async function GET(request) {
         }, { status: 410 });
       }
 
-      // ─── PAID invitations: skip free-timer logic entirely ─────
+      // ─── PAID invitations: enforce 20-day expiry limit ────────
       if (invitation.isPaid) {
+        const now = new Date();
+        if (invitation.paidExpiresAt && now > invitation.paidExpiresAt) {
+          invitation.isActive = false;
+          await invitation.save();
+          return NextResponse.json({
+            success: false,
+            expired: true,
+            invitationId: invitation._id,
+            templateId: invitation.templateId,
+            error: 'This invitation has expired.',
+          }, { status: 410 });
+        }
         return NextResponse.json({ success: true, invitation });
       }
 
@@ -121,9 +133,12 @@ export async function PATCH(request) {
 
     const updates = {};
     if (isPaid) {
+      const now = new Date();
       updates.isPaid = true;
       updates.isActive = true;
-      updates.paidAt = new Date();
+      updates.paidAt = now;
+      updates.paidExpiresAt = new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000); // 20 Days
+      updates.deletionAt = new Date(now.getTime() + 24 * 24 * 60 * 60 * 1000);    // 24 Days
       updates.expiresAt = null;
       updates.freeViewedAt = null;
     }

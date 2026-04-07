@@ -24,6 +24,7 @@ function FloatingCrystal({ position, scale = 1, speed = 1, color = '#EEBEC6' }) 
     if (meshRef.current) {
       meshRef.current.rotation.y += 0.003 * speed;
       meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5 * speed) * 0.15;
+      meshRef.current.position.y = (window.scrollY || 0) * 0.002 * speed;
     }
   });
 
@@ -59,7 +60,8 @@ function FloatingRing({ position, scale = 1, speed = 1, color = '#A8D6EF' }) {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.005 * speed;
       meshRef.current.rotation.z += 0.003 * speed;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.7 * speed) * 0.15;
+      const scrollOffset = (window.scrollY || 0) * 0.003 * speed;
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.7 * speed) * 0.15 + scrollOffset;
     }
   });
 
@@ -83,7 +85,8 @@ function FloatingSphere({ position, scale = 1, speed = 1, color = '#CFD3ED' }) {
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 * speed) * 0.2;
+      const scrollOffset = (window.scrollY || 0) * 0.0025 * speed;
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 * speed) * 0.2 + scrollOffset;
       meshRef.current.position.x = position[0] + Math.cos(state.clock.elapsedTime * 0.3 * speed) * 0.1;
     }
   });
@@ -113,11 +116,12 @@ function ParticleField({ count = 80 }) {
     const temp = [];
     for (let i = 0; i < count; i++) {
       temp.push({
-        x: (Math.random() - 0.5) * 16,
-        y: (Math.random() - 0.5) * 10,
+        x: (Math.random() - 0.5) * 20, // Widened spread
+        y: (Math.random() - 0.5) * 15,
         z: (Math.random() - 0.5) * 8,
         speed: 0.2 + Math.random() * 0.4,
         scale: 0.02 + Math.random() * 0.04,
+        scrollFactor: 0.5 + Math.random() * 2.5 // Add parallax factor
       });
     }
     return temp;
@@ -126,10 +130,12 @@ function ParticleField({ count = 80 }) {
   useFrame((state) => {
     if (!meshRef.current) return;
     const t = state.clock.elapsedTime;
+    const scrollY = window.scrollY || 0;
+    
     particles.forEach((p, i) => {
       dummy.position.set(
         p.x + Math.sin(t * p.speed + i) * 0.3,
-        p.y + Math.cos(t * p.speed * 0.8 + i * 0.5) * 0.4,
+        p.y + Math.cos(t * p.speed * 0.8 + i * 0.5) * 0.4 + (scrollY * 0.005 * p.scrollFactor),
         p.z
       );
       dummy.scale.setScalar(p.scale * (1 + Math.sin(t * 2 + i) * 0.3));
@@ -161,23 +167,23 @@ function Scene() {
       <directionalLight position={[-3, 2, -5]} intensity={0.4} color="#A8D6EF" />
       <pointLight position={[0, 3, 2]} intensity={0.5} color="#EEBEC6" />
 
-      {/* Main crystal — hero center-right */}
-      <FloatingCrystal position={[3, 0.5, -1]} scale={0.8} speed={0.8} color="#EEBEC6" />
+      {/* Main crystal — moved right */}
+      <FloatingCrystal position={[5.5, 1, -1]} scale={0.8} speed={0.8} color="#EEBEC6" />
       
-      {/* Secondary crystal — left */}
-      <FloatingCrystal position={[-3.5, -0.5, -2]} scale={0.5} speed={1.2} color="#CFD3ED" />
+      {/* Secondary crystal — moved left */}
+      <FloatingCrystal position={[-5.5, -0.8, -2]} scale={0.5} speed={1.2} color="#CFD3ED" />
 
-      {/* Rings */}
-      <FloatingRing position={[2, -1.5, -3]} scale={0.4} speed={0.6} color="#A8D6EF" />
-      <FloatingRing position={[-2, 1.5, -2]} scale={0.3} speed={0.9} color="#EEBEC6" />
+      {/* Rings — pushed outwards */}
+      <FloatingRing position={[4.5, -2, -3]} scale={0.4} speed={0.6} color="#A8D6EF" />
+      <FloatingRing position={[-4, 2.5, -2]} scale={0.3} speed={0.9} color="#EEBEC6" />
 
-      {/* Spheres */}
-      <FloatingSphere position={[4.5, 1.5, -4]} scale={0.35} speed={0.7} color="#8BD2F0" />
-      <FloatingSphere position={[-4, -1, -3]} scale={0.25} speed={1.1} color="#FFD9CC" />
-      <FloatingSphere position={[0, 2, -5]} scale={0.45} speed={0.5} color="#E7B7D6" />
+      {/* Spheres — distributed as a frame */}
+      <FloatingSphere position={[6, 2.5, -4]} scale={0.35} speed={0.7} color="#8BD2F0" />
+      <FloatingSphere position={[-6, -2.5, -3]} scale={0.25} speed={1.1} color="#FFD9CC" />
+      <FloatingSphere position={[-3.5, 3.5, -5]} scale={0.45} speed={0.5} color="#E7B7D6" />
 
-      {/* Particle field */}
-      <ParticleField count={60} />
+      {/* Particle field with slightly more particles to cover the wider spread */}
+      <ParticleField count={100} />
     </>
   );
 }

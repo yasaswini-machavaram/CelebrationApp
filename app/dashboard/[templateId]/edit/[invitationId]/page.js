@@ -283,7 +283,7 @@ export default function EditInvitationPage() {
           </div>
           <div className={styles.successActions}>
             <Link href="/subscriptions" className="btn-primary">My Subscriptions</Link>
-            <Link href={`/invite/${invitation.slug}`} target="_blank" className="btn-secondary">View Invitation →</Link>
+            <a href={`/invite/${invitation.slug}`} target="_blank" rel="noopener noreferrer" className="btn-secondary">View Invitation →</a>
           </div>
         </motion.div>
       </div>
@@ -318,9 +318,9 @@ export default function EditInvitationPage() {
             </p>
           </div>
           <div className={styles.successActions}>
-            <Link href={`/invite/${invitation.slug}`} target="_blank" className="btn-primary">
+            <a href={`/invite/${invitation.slug}`} target="_blank" rel="noopener noreferrer" className="btn-primary">
               View Updated Invitation →
-            </Link>
+            </a>
             <Link href="/subscriptions" className="btn-secondary">
               My Subscriptions
             </Link>

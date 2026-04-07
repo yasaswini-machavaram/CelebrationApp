@@ -49,6 +49,10 @@ export default function SignupPage() {
       setError('All fields are required.');
       return;
     }
+    if (form.mobile.length !== 10) {
+      setError('Mobile number must be exactly 10 digits.');
+      return;
+    }
     if (form.username.length < 3) {
       setError('Username must be at least 3 characters.');
       return;

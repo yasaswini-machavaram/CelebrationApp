@@ -425,9 +425,9 @@ export default function DashboardPage() {
             </button>
           </div>
           <div className={styles.successActions}>
-            <Link href={inviteUrl} target="_blank" className="btn-primary">
+            <a href={inviteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
               View Invitation →
-            </Link>
+            </a>
             <Link href="/subscriptions" className="btn-secondary">
               My Subscriptions
             </Link>

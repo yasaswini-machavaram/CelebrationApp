@@ -39,9 +39,25 @@ const scaleIn = {
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [allTemplates, setAllTemplates] = useState(templates);
   const [filteredTemplates, setFilteredTemplates] = useState(templates);
   const { user, loading: authLoading, logout } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      try {
+        const res = await fetch('/api/templates');
+        const data = await res.json();
+        if (data.success) {
+          setAllTemplates(data.templates);
+        }
+      } catch (err) {
+        console.error('Failed to fetch dynamic templates:', err);
+      }
+    };
+    fetchTemplates();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -51,11 +67,11 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (activeCategory === 'All') {
-      setFilteredTemplates(templates);
+      setFilteredTemplates(allTemplates);
     } else {
-      setFilteredTemplates(templates.filter(t => t.category === activeCategory));
+      setFilteredTemplates(allTemplates.filter(t => t.category === activeCategory));
     }
-  }, [activeCategory]);
+  }, [activeCategory, allTemplates]);
 
   const handleLogout = async () => {
     await logout();
@@ -136,7 +152,7 @@ export default function LandingPage() {
               <>
                 {user ? (
                   <>
-                    <li><Link href="/subscriptions" className={styles.navUser} title="My Subscriptions">👤 {user.username}</Link></li>
+                    <li><Link href="/subscriptions" className={styles.navUser} title="My Subscriptions">My Subscriptions ({user.username})</Link></li>
                     <li>
                       <button onClick={handleLogout} className={styles.navLink} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                         Logout
@@ -280,33 +296,32 @@ export default function LandingPage() {
                     )}
                   </div>
                   <div className={styles.templateInfo}>
-                    <div className={styles.templateCategory}>{template.style || template.category}</div>
-                    <h3 className={styles.templateName}>{template.name}</h3>
-                    <p className={styles.templateDesc}>{template.description}</p>
-                    <div className={styles.templateFeatures}>
-                      {template.features.slice(0, 3).map((f) => (
-                        <span key={f} className={styles.featureTag}>{f}</span>
-                      ))}
+                    <div className={styles.templateHeader}>
+                      <h3 className={styles.templateName}>{template.name}</h3>
+                      <div className={styles.templatePrice}>
+                        {template.price > 0 ? `₹${(template.price / 100).toFixed(0)}` : 'Free'}
+                      </div>
                     </div>
+                    <p className={styles.templateDesc}>{template.description}</p>
                   </div>
                 </Link>
                 {!template.comingSoon && (
                   <div className={styles.templateCardActions}>
-                    {template.sampleSlug ? (
-                      <a
-                        href={`/invite/${template.sampleSlug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.sampleBtn}
-                      >
-                        👁 View Sample
-                      </a>
-                    ) : null}
+                    <a
+                      href={template.sampleSlug ? `/invite/${template.sampleSlug}` : '#'}
+                      target={template.sampleSlug ? '_blank' : undefined}
+                      rel="noopener noreferrer"
+                      className={styles.sampleBtn}
+                      style={!template.sampleSlug ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                      onClick={e => !template.sampleSlug && e.preventDefault()}
+                    >
+                      View
+                    </a>
                     <Link
                       href={`/dashboard/${template.id}`}
                       className={styles.useTemplateBtn}
                     >
-                      Use Template →
+                      Use
                     </Link>
                   </div>
                 )}

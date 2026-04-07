@@ -68,10 +68,16 @@ export async function POST(request) {
 
     // ─── Mark invitation as paid & reactivate ───────────────────
     if (invitationId) {
+      const now = new Date();
+      const paidExpiresAt = new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000); // 20 Days
+      const deletionAt = new Date(now.getTime() + 24 * 24 * 60 * 60 * 1000);    // 24 Days
+
       await Invitation.findByIdAndUpdate(invitationId, {
         isPaid: true,
         isActive: true,
-        paidAt: new Date(),
+        paidAt: now,
+        paidExpiresAt: paidExpiresAt,
+        deletionAt: deletionAt,
         expiresAt: null,        // clear the 60s expiry
         freeViewedAt: null,     // clear so countdown doesn't show
       });

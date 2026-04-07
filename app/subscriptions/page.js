@@ -99,10 +99,16 @@ export default function SubscriptionsPage() {
   };
 
   const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+  const fmtDateTime = (d) => d ? new Date(d).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
   const fmtAmount = (p) => p ? `₹${(p / 100).toFixed(0)}` : '—';
 
   const getStatus = (sub) => {
-    if (sub.isPaid) return 'paid';
+    if (sub.isPaid) {
+      if (sub.paidExpiresAt && new Date() > new Date(sub.paidExpiresAt)) {
+        return 'expired-paid';
+      }
+      return 'paid';
+    }
     if (!sub.isActive) return 'expired';
     return 'free';
   };
@@ -172,10 +178,11 @@ export default function SubscriptionsPage() {
                     </div>
                     <span className={`${styles.cardBadge} ${
                       status === 'paid' ? styles.badgePaid :
+                      status === 'expired-paid' ? styles.badgeExpired :
                       status === 'expired' ? styles.badgeExpired :
                       styles.badgeFree
                     }`}>
-                      {status === 'paid' ? '✓ Paid' : status === 'expired' ? 'Expired' : 'Free Preview'}
+                      {status === 'paid' ? '✓ Paid' : status === 'expired-paid' ? 'Deactivated' : status === 'expired' ? 'Expired' : 'Free Preview'}
                     </span>
                   </div>
 
@@ -200,16 +207,26 @@ export default function SubscriptionsPage() {
                     {sub.payment && (
                       <>
                         <div className={styles.cardField}>
+                          <span className={styles.fieldLabel}>Paid On</span>
+                          <span className={styles.fieldValue}>{fmtDateTime(sub.paidAt || sub.payment.createdAt)}</span>
+                        </div>
+                        <div className={styles.cardField}>
+                          <span className={styles.fieldLabel}>Active Until</span>
+                          <span className={styles.fieldValue} style={{ color: status === 'expired-paid' ? '#ef4444' : 'inherit' }}>
+                            {sub.paidExpiresAt ? fmtDateTime(sub.paidExpiresAt) : 'Permanent'}
+                          </span>
+                        </div>
+                        {status === 'expired-paid' && sub.deletionAt && (
+                          <div className={styles.cardField}>
+                            <span className={styles.fieldLabel}>Deletes On</span>
+                            <span className={styles.fieldValue} style={{ color: '#ef4444', fontWeight: 600 }}>
+                              {fmtDateTime(sub.deletionAt)}
+                            </span>
+                          </div>
+                        )}
+                        <div className={styles.cardField}>
                           <span className={styles.fieldLabel}>Payment ID</span>
                           <span className={styles.fieldMono}>{sub.payment.razorpayPaymentId || '—'}</span>
-                        </div>
-                        <div className={styles.cardField}>
-                          <span className={styles.fieldLabel}>Amount</span>
-                          <span className={styles.fieldValue}>{fmtAmount(sub.payment.amount)}</span>
-                        </div>
-                        <div className={styles.cardField}>
-                          <span className={styles.fieldLabel}>Paid On</span>
-                          <span className={styles.fieldValue}>{fmtDate(sub.payment.createdAt)}</span>
                         </div>
                       </>
                     )}
@@ -226,17 +243,17 @@ export default function SubscriptionsPage() {
                   {/* Actions */}
                   <div className={styles.cardActions}>
                     {sub.isActive && (
-                      <Link href={`/invite/${sub.slug}`} target="_blank" className={styles.viewBtn}>
+                      <a href={`/invite/${sub.slug}`} target="_blank" rel="noopener noreferrer" className={styles.viewBtn}>
                         View Invitation →
-                      </Link>
+                      </a>
                     )}
-                    {!sub.isPaid && (
+                    {(!sub.isPaid || status === 'expired-paid') && (
                       <button
                         className={styles.buyBtn}
                         onClick={() => handleBuyNow(sub)}
                         disabled={buyingId === sub._id}
                       >
-                        {buyingId === sub._id ? '⏳ Processing...' : '💳 Buy Now'}
+                        {buyingId === sub._id ? '⏳ Processing...' : status === 'expired-paid' ? '🔄 Renew & Reactivate' : '💳 Buy Now'}
                       </button>
                     )}
                     {sub.isPaid && (sub.editCount || 0) < 1 && (

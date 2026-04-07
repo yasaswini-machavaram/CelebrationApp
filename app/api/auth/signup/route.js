@@ -16,6 +16,13 @@ export async function POST(request) {
       );
     }
 
+    if (mobile.trim().length !== 10) {
+      return NextResponse.json(
+        { success: false, error: 'Mobile number must be exactly 10 digits.' },
+        { status: 400 }
+      );
+    }
+
     if (username.length < 3 || username.length > 30) {
       return NextResponse.json(
         { success: false, error: 'Username must be 3-30 characters.' },
