@@ -31,10 +31,11 @@ function useCountdown(targetDate) {
     };
   };
 
-  const [timeLeft, setTimeLeft] = useState(calc);
+  const [timeLeft, setTimeLeft] = useState(null);
 
   useEffect(() => {
     if (!targetDate) return;
+    setTimeLeft(calc());
     const id = setInterval(() => setTimeLeft(calc()), 1000);
     return () => clearInterval(id);
   }, [targetDate]);
@@ -81,6 +82,66 @@ function CountdownTimer({ weddingDate }) {
   );
 }
 
+// ─── Background Music + Splash Overlay ───────────────────────────────────────
+function MusicPlayer({ groomName, brideName }) {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+
+  const openInvitation = () => {
+    setShowSplash(false);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = 0.5;
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  };
+
+  const toggle = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  };
+
+  return (
+    <>
+      <audio ref={audioRef} src="/love.mp3" loop preload="auto" />
+
+      {/* Splash overlay — guarantees user interaction for autoplay */}
+      {showSplash && (
+        <div className={styles.splashOverlay}>
+          <div className={styles.splashContent}>
+            <div className={styles.splashOrnament}>✦</div>
+            <div className={styles.splashSubtitle}>You Are Invited To The Wedding Of</div>
+            <div className={styles.splashNames}>{groomName} & {brideName}</div>
+            <button className={styles.splashButton} onClick={openInvitation}>
+              Open Invitation
+            </button>
+            <div className={styles.splashOrnament}>✦</div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating toggle (visible after splash dismissed) */}
+      {!showSplash && (
+        <button
+          className={`${styles.musicToggle} ${isPlaying ? styles.musicPlaying : ''}`}
+          onClick={toggle}
+          aria-label={isPlaying ? 'Mute music' : 'Play music'}
+          title={isPlaying ? 'Mute music' : 'Play music'}
+        >
+          {isPlaying ? '♫' : '♪'}
+        </button>
+      )}
+    </>
+  );
+}
+
 // ─── Main Component ──────────────────────────────────────────────────────────
 export default function EinviteTemplate1({ invitation = {} }) {
   const {
@@ -122,8 +183,10 @@ export default function EinviteTemplate1({ invitation = {} }) {
   const PW = isMobile ? 393 : 1440;   // canvas reference width
   const PH = isMobile ? 852 : 760;     // per-page reference height
 
-  // Page 6 height adapts to event count: compact on mobile, dynamic on desktop
-  const page6Height = isMobile ? 852 : (events.length <= 2 ? 760 : 960);
+  // Page 6 height adapts to event count: taller on mobile for stacked cards with venue addresses
+  const page6Height = isMobile
+    ? (events.length <= 2 ? 852 : 1050)
+    : (events.length <= 2 ? 760 : 960);
   const page6Top = hasPhotos
     ? (isMobile ? 5 * PH : 3804)
     : (isMobile ? 4 * PH : 3039);
@@ -152,8 +215,8 @@ export default function EinviteTemplate1({ invitation = {} }) {
   );
 
   // Carpet unrolls as Page 3 enters the viewport
-  const carpetStart = isMobile ? PH * 1.8 : 1064;
-  const carpetEnd = isMobile ? PH * 3 : 1703;
+  const carpetStart = isMobile ? PH * 1.2 : 1064;
+  const carpetEnd = isMobile ? PH * 2.2 : 1703;
   const carpetClipPath = useTransform(
     scrollYProgress,
     [carpetStart / totalHeight, carpetEnd / totalHeight],
@@ -161,7 +224,7 @@ export default function EinviteTemplate1({ invitation = {} }) {
   );
 
   // Page 3 text fades in WHILE the carpet is unrolling
-  const carpetTextStart = isMobile ? PH * 2.2 : 1200;
+  const carpetTextStart = isMobile ? PH * 1.5 : 1200;
   const carpetTextOpacity = useTransform(
     scrollYProgress,
     [carpetTextStart / totalHeight, carpetEnd / totalHeight],
@@ -175,6 +238,7 @@ export default function EinviteTemplate1({ invitation = {} }) {
 
   return (
     <div className={styles.wrapper}>
+      <MusicPlayer groomName={groomName} brideName={brideName} />
       <div
         className={styles.canvas}
         ref={canvasRef}
@@ -382,6 +446,11 @@ export default function EinviteTemplate1({ invitation = {} }) {
           </div>
           <div className={styles.lotusRight}>
             <img src="/assets/einvite-template1/fresh/page4-flowers-right.svg" alt="Right Lotus Leaves" className={styles.imgContain} />
+          </div>
+
+          {/* Groom & Bride center image — mobile only */}
+          <div className={styles.page6CenterImage}>
+            <img src="/assets/einvite-template1/fresh/groom and bride 1.png" alt="Groom and Bride" className={styles.imgContain} />
           </div>
 
           {/* Save The Date Content */}

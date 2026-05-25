@@ -1,0 +1,1694 @@
+/* =============================================
+   EINVITE TEMPLATE 1 — FULL BUILD (PAGES 1 to 7)
+   Figma Canvas: 1440 x 5274
+   ============================================= */
+
+/* @imports must be first */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #1a0a0e;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* Master Canvas — proportional to contiguous stacked pages */
+.canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  aspect-ratio: 1440 / 5324;
+  /* overridden via inline style */
+  overflow: hidden;
+  container-type: inline-size;
+  container-name: canvas;
+}
+
+/* Base utility for full-width sections */
+.sectionBlock {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Utility for pattern & gradient layers */
+.fillBlock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.imgBlock {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+}
+
+.imgCover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.imgContain {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* ================= PAGE 1 ================= */
+.page1 {
+  top: 0;
+  height: calc(760 / 1440 * 100cqw);
+  z-index: 1;
+}
+
+.skyGradient {
+  background: linear-gradient(180deg, rgba(58, 222, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  z-index: 1;
+}
+
+.page1Bg {
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  z-index: 2;
+}
+
+.garlandTop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 53.125%;
+  z-index: 10;
+}
+
+.garlandTop img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.heroNames {
+  position: absolute;
+  top: calc(50 / 1440 * 100cqw);
+  left: 0;
+  right: 0;
+  z-index: 8;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.groomName,
+.brideName {
+  font-family: 'Lucy Said Ok Personal Use', cursive;
+  font-size: calc(96 / 1440 * 100cqw);
+  color: #760000;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: capitalize;
+  word-wrap: break-word;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.ampersand {
+  font-family: 'Lucy Said Ok Personal Use', cursive;
+  font-size: 4cqw;
+  color: #760000;
+  margin: 0.3cqw 0;
+  font-style: italic;
+}
+
+.taglineText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(22 / 1440 * 100cqw);
+  color: #760000;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 0.8cqw;
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+}
+
+/* ================= PAGE 2 ================= */
+.page2 {
+  top: calc(760 / 1440 * 100cqw);
+  height: calc(761 / 1440 * 100cqw);
+  z-index: 2;
+  overflow: hidden;
+}
+
+.page2Bg {
+  z-index: 1;
+}
+
+/* ================= PAGE 3 (Carpet) CONTENT ================= */
+.page3Content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.textLine1 {
+  position: absolute;
+  top: calc(90 / 760 * 100%);
+  width: 100%;
+}
+
+.textImgCenter {
+  position: absolute;
+  top: calc(180 / 760 * 100%);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15cqw;
+  height: auto;
+}
+
+.textLine2 {
+  position: absolute;
+  top: calc(440 / 760 * 100%);
+  width: 100%;
+}
+
+.textLine3 {
+  position: absolute;
+  top: calc(520 / 760 * 100%);
+  width: 100%;
+}
+
+.textLine4 {
+  position: absolute;
+  top: calc(580 / 760 * 100%);
+  width: 100%;
+}
+
+.weddingDateDisplay {
+  position: absolute;
+  top: calc(660 / 760 * 100%);
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-size: calc(32 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.headingMaiandra {
+  font-family: 'Cormorant Garamond', serif;
+  color: #FCDD00;
+  font-size: calc(45 / 1440 * 100cqw);
+  font-weight: 500;
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+.smallMaiandra {
+  font-family: 'Cormorant Garamond', serif;
+  color: #FFFFFF;
+  font-size: calc(28 / 1440 * 100cqw);
+  font-weight: 400;
+  text-align: center;
+  word-wrap: break-word;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.familyName {
+  font-family: 'Cormorant Garamond', serif;
+  color: #FCDD00;
+  font-size: calc(54 / 1440 * 100cqw);
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.2;
+}
+
+
+/* ================= TEMPLE ================= */
+.templeContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  z-index: 5;
+  will-change: top;
+}
+
+.templeContainer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+}
+
+/* ================= PAGE 3 ================= */
+.page3 {
+  top: calc(1521 / 1440 * 100cqw);
+  height: calc(760 / 1440 * 100cqw);
+  z-index: 3;
+  overflow: hidden;
+}
+
+.page3Gradient {
+  background: linear-gradient(180deg, rgba(187, 138, 100, 1) 0%, rgba(124, 0, 0, 1) 100%);
+  z-index: 1;
+}
+
+.page3Pattern {
+  z-index: 2;
+  opacity: 0.5;
+}
+
+.carpetContainer {
+  position: absolute;
+  top: 0;
+  left: 11.32%;
+  width: 77.36%;
+  height: 100%;
+  z-index: 3;
+  will-change: clip-path;
+}
+
+.elephantsOverlay {
+  position: absolute;
+  top: 0;
+  left: 2.57%;
+  width: 94.86%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ================= PAGE 4 ================= */
+.page4 {
+  top: calc(2281 / 1440 * 100cqw);
+  height: calc(758 / 1440 * 100cqw);
+  z-index: 4;
+  overflow: hidden;
+}
+
+.page4Gradient {
+  background: linear-gradient(180deg, rgba(125, 3, 2, 1) 0%, rgba(234, 99, 2, 1) 100%);
+  z-index: 1;
+}
+
+.page4Pattern {
+  z-index: 2;
+  opacity: 1;
+}
+
+.page4Border {
+  position: absolute;
+  top: -1%;
+  left: 0;
+  width: 100%;
+  z-index: 6;
+}
+
+.page4Border img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================= PAGE 4 CONTENT ================= */
+.page4Content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5cqw;
+}
+
+.page4Name {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(80 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page4Weds {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(32 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  margin: 0.3cqw 0;
+}
+
+.page4SubText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(24 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.page4Parents {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(28 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 600;
+  margin-bottom: 0.5cqw;
+}
+
+.lampLeft {
+  position: absolute;
+  top: 0;
+  left: -2.5%;
+  width: 27.8%;
+  height: calc(389 / 755 * 100%);
+  z-index: 5;
+  display: flex;
+}
+
+.lampRight {
+  position: absolute;
+  top: 0;
+  right: -2.5%;
+  width: 27.8%;
+  height: calc(389 / 755 * 100%);
+  z-index: 5;
+  display: flex;
+}
+
+.garlandStr {
+  width: 16.666%;
+  height: 100%;
+  background-size: 600% 100%;
+  background-repeat: no-repeat;
+  transform-origin: top center;
+  animation: pulsatingLight 2.5s infinite alternate ease-in-out;
+}
+
+.lampLeft .garlandStr {
+  background-image: url('/assets/einvite-template1/fresh/ganesha2.svg');
+}
+
+.lampRight .garlandStr,
+.lampRightPage5 .garlandStr {
+  background-image: url('/assets/einvite-template1/fresh/ganesha3.svg');
+}
+
+.garlandStr1 {
+  background-position: 0% 0;
+  animation-delay: 0s;
+}
+
+.garlandStr2 {
+  background-position: 20% 0;
+  animation-delay: 0.2s;
+}
+
+.garlandStr3 {
+  background-position: 40% 0;
+  animation-delay: 0.4s;
+}
+
+.garlandStr4 {
+  background-position: 60% 0;
+  animation-delay: 0.1s;
+}
+
+.garlandStr5 {
+  background-position: 80% 0;
+  animation-delay: 0.3s;
+}
+
+.garlandStr6 {
+  background-position: 100% 0;
+  animation-delay: 0.5s;
+}
+
+@keyframes pulsatingLight {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 200, 50, 0.4)) brightness(1);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 25px rgba(255, 200, 50, 0.9)) brightness(1.2);
+  }
+}
+
+/* ================= PAGE 5 ================= */
+.page5 {
+  top: calc(3039 / 1440 * 100cqw);
+  height: calc(765 / 1440 * 100cqw);
+  z-index: 5;
+  overflow: hidden;
+}
+
+.page5Gradient {
+  background: linear-gradient(180deg, rgba(233, 96, 0, 1) 0%, rgba(210, 67, 77, 1) 100%);
+  z-index: 1;
+}
+
+.page5Pattern {
+  z-index: 2;
+  opacity: 1;
+}
+
+.ambientLightPage5 {
+  position: absolute;
+  top: calc(0 / 765 * 100%);
+  left: calc(733 / 1440 * 100%);
+  width: calc(707 / 1440 * 100%);
+  height: calc(738 / 765 * 100%);
+  background: radial-gradient(circle, rgba(233, 96, 0, 0.6) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Pulsating light simulating the flame of the lamp on the polaroid */
+.lampGlowPage5 {
+  position: absolute;
+  top: calc(300 / 765 * 100%);
+  left: calc(1220 / 1440 * 100%);
+  width: calc(150 / 1440 * 100%);
+  height: calc(150 / 1440 * 100%);
+  background: radial-gradient(circle, rgba(255, 200, 50, 0.9) 0%, rgba(255, 150, 0, 0.4) 40%, transparent 80%);
+  animation: pulsatingFlame 2s infinite alternate ease-in-out;
+  z-index: 6;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes pulsatingFlame {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 1;
+    filter: blur(5px);
+  }
+}
+
+.polaroidBg {
+  position: absolute;
+  top: calc(-108 / 765 * 100%);
+  left: calc(-200 / 1440 * 100%);
+  width: calc(907.75 / 1440 * 100%);
+  height: calc(878.57 / 765 * 100%);
+  z-index: 3;
+}
+
+/* Explicit extracted lamp layer for Page 5 */
+.lampRightPage5 {
+  position: absolute;
+  top: calc(4 / 765 * 100%);
+  left: calc(1076 / 1440 * 100%);
+  width: calc(400 / 1440 * 100%);
+  height: calc(389 / 765 * 100%);
+  z-index: 5;
+  display: flex;
+}
+
+.carnations {
+  position: absolute;
+  top: calc(242 / 765 * 100%);
+  left: calc(-103 / 1440 * 100%);
+  width: calc(1366 / 1440 * 100%);
+  height: calc(768 / 765 * 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.introText {
+  position: absolute;
+  top: calc(80 / 765 * 100%);
+  left: calc(40 / 1440 * 100%);
+  width: calc(450 / 1440 * 100%);
+  height: auto;
+  z-index: 5;
+}
+
+.introTextLine1 {
+  font-family: 'Moralana', serif;
+  font-size: calc(46 / 1440 * 100cqw);
+  color: #000000;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 1.18;
+}
+
+.introTextLine2 {
+  font-family: 'Moralana', serif;
+  font-size: calc(66 / 1440 * 100cqw);
+  color: #000000;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 1.18;
+}
+
+/* ================= PHOTO GALLERY ================= */
+.photoGallery {
+  position: absolute;
+  top: calc(10 / 765 * 100%);
+  right: calc(20 / 1440 * 100%);
+  width: calc(780 / 1440 * 100%);
+  height: calc(700 / 765 * 100%);
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photoGalleryHeader {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(36 / 1440 * 100cqw);
+  color: #FFFFFF;
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  margin-bottom: 2cqw;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.photoGrid {
+  display: grid;
+  gap: 1.2cqw;
+  width: 100%;
+}
+
+.photoBox {
+  border-radius: 1.2cqw;
+  overflow: hidden;
+  aspect-ratio: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.photoBox:hover {
+  transform: scale(1.04);
+}
+
+.photoBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dynamic grid layouts based on photo count */
+.photoCount1 {
+  grid-template-columns: 1fr;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.photoCount2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.photoCount3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.photoCount4 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.photoCount4 .photoBox:nth-child(4) {
+  grid-column: 1 / 3;
+  max-width: calc(50% - 0.6cqw);
+  justify-self: end;
+}
+
+.photoCount5 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.photoCount5 .photoBox:nth-child(1) {
+  grid-column: 1 / 3;
+}
+
+.photoCount5 .photoBox:nth-child(2) {
+  grid-column: 3 / 5;
+}
+
+.photoCount5 .photoBox:nth-child(3) {
+  grid-column: 5 / 7;
+}
+
+.photoCount5 .photoBox:nth-child(4) {
+  grid-column: 2 / 4;
+}
+
+.photoCount5 .photoBox:nth-child(5) {
+  grid-column: 4 / 6;
+}
+
+/* ================= PAGE 6 ================= */
+.page6 {
+  height: calc(960 / 1440 * 100cqw);
+  z-index: 6;
+  overflow: hidden;
+}
+
+.page6Gradient {
+  background: linear-gradient(180deg, rgba(209, 68, 71, 1) 0%, rgba(219, 51, 138, 1) 100%);
+  z-index: 1;
+}
+
+.page6Pattern {
+  z-index: 2;
+  opacity: 1;
+}
+
+.ambientLightPage6 {
+  position: absolute;
+  top: calc(71 / 960 * 100%);
+  left: calc(256 / 1440 * 100%);
+  width: calc(938 / 1440 * 100%);
+  height: calc(342 / 960 * 100%);
+  background: radial-gradient(circle, rgba(210, 67, 77, 0.7) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lotusRight {
+  position: absolute;
+  top: calc(191 / 960 * 100%);
+  left: calc(77 / 1440 * 100%);
+  width: calc(1366 / 1440 * 100%);
+  height: calc(768 / 960 * 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.lotusLeft {
+  position: absolute;
+  top: calc(191 / 960 * 100%);
+  left: calc(-3 / 1440 * 100%);
+  width: calc(1366 / 1440 * 100%);
+  height: calc(768 / 960 * 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Center image — hidden on desktop, shown on mobile */
+.page6CenterImage {
+  display: none;
+}
+
+/* ================= PAGE 6 CONTENT ================= */
+.page6Content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2cqw 8cqw 0;
+}
+
+.saveTheDateTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(64 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5cqw;
+}
+
+.eventsRow {
+  display: flex;
+  justify-content: center;
+  gap: 4cqw;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.eventCard6 {
+  text-align: center;
+  min-width: 18cqw;
+  max-width: 25cqw;
+}
+
+.eventName6 {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(36 / 1440 * 100cqw);
+  color: #FCDD00;
+  font-weight: 700;
+  margin-bottom: 0.8cqw;
+}
+
+.eventDetail6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(22 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.eventMuhurtham6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(20 / 1440 * 100cqw);
+  color: #FCDD00;
+  font-style: italic;
+  margin-top: 0.5cqw;
+}
+
+.eventVenue6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(20 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.8cqw;
+  font-weight: 600;
+}
+
+.eventVenueAddr6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(18 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.2cqw;
+}
+
+/* Shared venue — centered, highlighted, above bottom images */
+.sharedVenue {
+  margin-top: 1cqw;
+  text-align: center;
+  position: relative;
+  z-index: 11;
+  padding: 1cqw 3cqw;
+  background: radial-gradient(ellipse at center, rgba(209, 68, 71, 0.85) 0%, transparent 75%);
+  border-radius: 2cqw;
+}
+
+.sharedVenueLabel {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(36 / 1440 * 100cqw);
+  color: #FCDD00;
+  font-weight: 600;
+  margin-bottom: 0.2cqw;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.sharedVenueName {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(26 / 1440 * 100cqw);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sharedVenueAddr {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(20 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.2cqw;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= PAGE 7 ================= */
+.page7 {
+  height: calc(760 / 1440 * 100cqw);
+  z-index: 7;
+  overflow: hidden;
+}
+
+.page7Gradient {
+  background: linear-gradient(180deg, rgba(218, 52, 133, 1) 0%, rgba(60, 13, 37, 1) 100%);
+  z-index: 1;
+}
+
+.page7Pattern {
+  z-index: 2;
+  opacity: 1;
+}
+
+.page7Border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 6;
+}
+
+.page7Border img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page7BottomBorder {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  z-index: 6;
+}
+
+.page7BottomBorder img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.roundFrameContainer {
+  position: absolute;
+  top: calc(69.9 / 760 * 100%);
+  left: calc(50 / 1440 * 100%);
+  width: calc(654.02 / 1440 * 100%);
+  height: calc(635.1 / 760 * 100%);
+  z-index: 5;
+}
+
+.roundFrameOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.roundFrameInnerImage {
+  position: absolute;
+  top: 13%;
+  left: 16%;
+  width: 68%;
+  height: 72%;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* ================= PAGE 7 RIGHT PANEL ================= */
+.page7RightPanel {
+  position: absolute;
+  top: calc(60 / 760 * 100%);
+  left: calc(740 / 1440 * 100%);
+  width: calc(620 / 1440 * 100%);
+  height: calc(640 / 760 * 100%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5cqw;
+}
+
+.thanksTitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: calc(90 / 1440 * 100cqw);
+  color: #FCDD00;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+}
+
+.thanksText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(24 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ================= COUNTDOWN TIMER ================= */
+.countdownWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8cqw;
+  margin-top: 1cqw;
+}
+
+.countdownHeading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(18 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.countdownRow {
+  display: flex;
+  gap: 1.5cqw;
+  align-items: center;
+}
+
+.countdownBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(252, 221, 0, 0.5);
+  border-radius: 1cqw;
+  padding: 1cqw 1.4cqw 0.6cqw;
+  min-width: 5.5cqw;
+  backdrop-filter: blur(4px);
+}
+
+.countdownNumber {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(40 / 1440 * 100cqw);
+  color: #FCDD00;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(252, 221, 0, 0.4);
+}
+
+.countdownLabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(14 / 1440 * 100cqw);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3cqw;
+}
+
+.countdownSeparator {
+  font-family: 'Playfair Display', serif;
+  font-size: calc(36 / 1440 * 100cqw);
+  color: rgba(252, 221, 0, 0.6);
+  margin-bottom: 1.2cqw;
+}
+
+.countdownDone {
+  font-family: 'Great Vibes', cursive;
+  font-size: calc(36 / 1440 * 100cqw);
+  color: #FCDD00;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(252, 221, 0, 0.5);
+}
+
+/* ================= MUSIC TOGGLE BUTTON ================= */
+.musicToggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(252, 221, 0, 0.6);
+  background: rgba(118, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  color: #FCDD00;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(252, 221, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.musicToggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(252, 221, 0, 0.3);
+}
+
+.musicToggle:active {
+  transform: scale(0.95);
+}
+
+.musicPlaying {
+  animation: musicSpin 3s linear infinite;
+  background: rgba(118, 0, 0, 0.95);
+  border-color: rgba(252, 221, 0, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(252, 221, 0, 0.35);
+}
+
+@keyframes musicSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= SPLASH OVERLAY ================= */
+.splashOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: radial-gradient(ellipse at center, rgba(118, 0, 0, 0.95) 0%, rgba(26, 10, 14, 0.98) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashFadeIn 0.6s ease-out;
+}
+
+@keyframes splashFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.splashContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.splashOrnament {
+  font-size: 28px;
+  color: rgba(252, 221, 0, 0.6);
+  letter-spacing: 0.5em;
+}
+
+.splashSubtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.splashNames {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: #FCDD00;
+  text-shadow: 0 0 30px rgba(252, 221, 0, 0.3);
+  line-height: 1.2;
+}
+
+.splashButton {
+  margin-top: 12px;
+  padding: 14px 48px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FCDD00;
+  background: transparent;
+  border: 2px solid rgba(252, 221, 0, 0.6);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.splashButton:hover {
+  background: rgba(252, 221, 0, 0.1);
+  border-color: rgba(252, 221, 0, 1);
+  box-shadow: 0 0 25px rgba(252, 221, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.splashButton:active {
+  transform: scale(0.97);
+}
+
+/* ==============================================
+   MOBILE RESPONSIVE — Portrait 393×852
+   Based on Figma "Mobile Template 1"
+   ============================================== */
+@media (max-width: 768px) {
+
+  /* ===== Page Heights & Positions (portrait 393×852) ===== */
+  .page1 {
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  .page2 {
+    top: calc(852 / 393 * 100cqw);
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  .page3 {
+    top: calc(1704 / 393 * 100cqw);
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  .page4 {
+    top: calc(2556 / 393 * 100cqw);
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  .page5 {
+    top: calc(3408 / 393 * 100cqw);
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  .page7 {
+    height: calc(852 / 393 * 100cqw);
+  }
+
+  /* Pages 6 & 7 top positions are set via JS inline styles */
+
+  /* ===== Page 1: Sky + Peacocks + Names ===== */
+  .page1Bg {
+    left: -25%;
+    width: 150%;
+  }
+
+  .heroNames {
+    top: calc(40 / 393 * 100cqw);
+    padding: 0 3cqw;
+  }
+
+  .groomName,
+  .brideName {
+    font-size: calc(48 / 393 * 100cqw);
+    line-height: 1.1;
+    max-width: 95cqw;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .ampersand {
+    font-size: calc(22 / 393 * 100cqw);
+    margin: 1.2cqw 0;
+  }
+
+  .taglineText {
+    font-size: calc(14 / 393 * 100cqw);
+    margin-top: 2.5cqw;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== Temple Container ===== */
+  .templeContainer {
+    width: 95%;
+  }
+
+  /* ===== Page 2: Temple Courtyard ===== */
+  .page2Bg {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+  }
+
+  /* ===== Page 3: Red Carpet + Elephants ===== */
+  .page3Content {
+    z-index: 15;
+  }
+
+  .carpetContainer {
+    left: 3%;
+    width: 94%;
+  }
+
+  .elephantsOverlay {
+    left: -2%;
+    width: 104%;
+    top: auto;
+    bottom: 0;
+    height: 40%;
+  }
+
+  .textLine1 {
+    top: calc(60 / 852 * 100%);
+  }
+
+  .textImgCenter {
+    top: calc(140 / 852 * 100%);
+    width: 22cqw;
+  }
+
+  .textLine2 {
+    top: calc(380 / 852 * 100%);
+  }
+
+  .textLine4 {
+    top: calc(480 / 852 * 100%);
+  }
+
+  .weddingDateDisplay {
+    top: calc(580 / 852 * 100%);
+    font-size: calc(26 / 393 * 100cqw);
+    letter-spacing: 0.12em;
+  }
+
+  .headingMaiandra {
+    font-size: calc(28 / 393 * 100cqw);
+  }
+
+  .smallMaiandra {
+    font-size: calc(16 / 393 * 100cqw);
+    line-height: 1.7;
+  }
+
+  /* ===== Page 4: Family & Names ===== */
+  .page4Content {
+    gap: 1.5cqw;
+    padding: 6cqw 4cqw;
+  }
+
+  .page4Name {
+    font-size: calc(42 / 393 * 100cqw);
+    max-width: 92cqw;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .page4Weds {
+    font-size: calc(24 / 393 * 100cqw);
+    letter-spacing: 0.25em;
+    margin: 1cqw 0;
+  }
+
+  .page4SubText {
+    font-size: calc(16 / 393 * 100cqw);
+  }
+
+  .page4Parents {
+    font-size: calc(19 / 393 * 100cqw);
+    margin-bottom: 1cqw;
+  }
+
+  .page4Border {
+    top: -0.5%;
+  }
+
+  .lampLeft {
+    left: -6%;
+    width: 34%;
+  }
+
+  .lampRight {
+    right: -6%;
+    width: 34%;
+  }
+
+  /* ===== Page 5: Gallery ===== */
+  .polaroidBg {
+    top: -5%;
+    left: -15%;
+    width: 70%;
+    height: 70%;
+    opacity: 0.4;
+  }
+
+  .introText {
+    top: 2%;
+    left: 5%;
+    width: 90%;
+    text-align: center;
+  }
+
+  .introTextLine1 {
+    font-size: calc(26 / 393 * 100cqw);
+    text-align: center;
+  }
+
+  .introTextLine2 {
+    font-size: calc(34 / 393 * 100cqw);
+    text-align: center;
+  }
+
+  .carnations {
+    top: calc(400 / 765 * 100%);
+    left: -8%;
+    width: 116%;
+    opacity: 0.35;
+  }
+
+  .photoGallery {
+    top: 16%;
+    right: 3%;
+    left: 3%;
+    width: 94%;
+    height: 80%;
+  }
+
+  .photoGalleryHeader {
+    font-size: calc(21 / 393 * 100cqw);
+    letter-spacing: 0.15em;
+    margin-bottom: 3cqw;
+  }
+
+  .photoGrid {
+    gap: 2.5cqw;
+  }
+
+  .photoCount3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photoCount4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photoCount5 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photoCount4 .photoBox:nth-child(4) {
+    grid-column: auto;
+    max-width: none;
+    justify-self: auto;
+  }
+
+  .photoCount5 .photoBox:nth-child(1),
+  .photoCount5 .photoBox:nth-child(2),
+  .photoCount5 .photoBox:nth-child(3),
+  .photoCount5 .photoBox:nth-child(4),
+  .photoCount5 .photoBox:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .photoBox {
+    border-radius: 2.5cqw;
+  }
+
+  /* ===== Page 6: Save the Date ===== */
+  .lotusLeft,
+  .lotusRight {
+    display: none;
+  }
+
+  .page6CenterImage {
+    display: block;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    width: 60%;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .page6Content {
+    padding: 4cqw 4cqw 0;
+  }
+
+  .saveTheDateTitle {
+    font-size: calc(40 / 393 * 100cqw);
+    margin-bottom: 3cqw;
+  }
+
+  .eventsRow {
+    flex-direction: column;
+    gap: 4cqw;
+    align-items: center;
+  }
+
+  .eventCard6 {
+    min-width: unset;
+    max-width: unset;
+    width: 90%;
+    padding: 2cqw 0;
+    border-bottom: 1px solid rgba(252, 221, 0, 0.2);
+  }
+
+  .eventCard6:last-child {
+    border-bottom: none;
+  }
+
+  .eventName6 {
+    font-size: calc(24 / 393 * 100cqw);
+    margin-bottom: 1cqw;
+  }
+
+  .eventDetail6 {
+    font-size: calc(15 / 393 * 100cqw);
+  }
+
+  .eventMuhurtham6 {
+    font-size: calc(14 / 393 * 100cqw);
+  }
+
+  .eventVenue6 {
+    font-size: calc(14 / 393 * 100cqw);
+    margin-top: 0.6cqw;
+  }
+
+  .eventVenueAddr6 {
+    font-size: calc(13 / 393 * 100cqw);
+    line-height: 1.4;
+  }
+
+  .ambientLightPage6 {
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 40%;
+  }
+
+  .sharedVenue {
+    margin-top: 2cqw;
+    padding: 2cqw 4cqw;
+  }
+
+  .sharedVenueLabel {
+    font-size: calc(24 / 393 * 100cqw);
+  }
+
+  .sharedVenueName {
+    font-size: calc(18 / 393 * 100cqw);
+  }
+
+  .sharedVenueAddr {
+    font-size: calc(14 / 393 * 100cqw);
+  }
+
+  /* ===== Page 7: Thank You + Countdown — stacked vertically ===== */
+  .page7Border {
+    z-index: 6;
+  }
+
+  .roundFrameContainer {
+    top: 2%;
+    left: 14%;
+    width: 72%;
+    height: 44%;
+  }
+
+  .roundFrameInnerImage {
+    top: 13%;
+    left: 16%;
+    width: 68%;
+    height: 72%;
+  }
+
+  .page7RightPanel {
+    top: 48%;
+    left: 5%;
+    width: 90%;
+    height: 50%;
+    gap: 1.5cqw;
+  }
+
+  .thanksTitle {
+    font-size: calc(52 / 393 * 100cqw);
+  }
+
+  .thanksText {
+    font-size: calc(15 / 393 * 100cqw);
+    line-height: 1.5;
+  }
+
+  /* ===== Countdown Timer — mobile ===== */
+  .countdownWrapper {
+    gap: 1.2cqw;
+    margin-top: 1cqw;
+  }
+
+  .countdownHeading {
+    font-size: calc(12 / 393 * 100cqw);
+  }
+
+  .countdownRow {
+    gap: 2cqw;
+  }
+
+  .countdownBox {
+    padding: 1.5cqw 2cqw 1cqw;
+    min-width: 12cqw;
+    border-radius: 1.5cqw;
+  }
+
+  .countdownNumber {
+    font-size: calc(28 / 393 * 100cqw);
+  }
+
+  .countdownLabel {
+    font-size: calc(9 / 393 * 100cqw);
+    margin-top: 0.4cqw;
+  }
+
+  .countdownSeparator {
+    font-size: calc(24 / 393 * 100cqw);
+    margin-bottom: 1cqw;
+  }
+
+  .countdownDone {
+    font-size: calc(26 / 393 * 100cqw);
+  }
+
+  /* ===== Music Toggle — mobile ===== */
+  .musicToggle {
+    width: 44px;
+    height: 44px;
+    bottom: 16px;
+    right: 16px;
+    font-size: 18px;
+  }
+}
+
+/* ==============================================
+   TABLET RESPONSIVE — 769px to 1024px
+   ============================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .groomName,
+  .brideName {
+    font-size: calc(120 / 1440 * 100cqw);
+  }
+
+  .ampersand {
+    font-size: 5.25cqw;
+  }
+
+  .taglineText {
+    font-size: calc(30 / 1440 * 100cqw);
+  }
+
+  .headingMaiandra {
+    font-size: calc(60 / 1440 * 100cqw);
+  }
+
+  .smallMaiandra {
+    font-size: calc(36 / 1440 * 100cqw);
+  }
+
+  .weddingDateDisplay {
+    font-size: calc(42 / 1440 * 100cqw);
+  }
+
+  .page4Name {
+    font-size: calc(105 / 1440 * 100cqw);
+  }
+
+  .page4Weds {
+    font-size: calc(42 / 1440 * 100cqw);
+  }
+
+  .page4SubText {
+    font-size: calc(33 / 1440 * 100cqw);
+  }
+
+  .page4Parents {
+    font-size: calc(39 / 1440 * 100cqw);
+  }
+
+  .saveTheDateTitle {
+    font-size: calc(84 / 1440 * 100cqw);
+  }
+
+  .eventName6 {
+    font-size: calc(48 / 1440 * 100cqw);
+  }
+
+  .eventDetail6 {
+    font-size: calc(30 / 1440 * 100cqw);
+  }
+
+  .eventMuhurtham6 {
+    font-size: calc(27 / 1440 * 100cqw);
+  }
+
+  .eventVenue6 {
+    font-size: calc(27 / 1440 * 100cqw);
+  }
+
+  .eventVenueAddr6 {
+    font-size: calc(24 / 1440 * 100cqw);
+  }
+
+  .sharedVenueLabel {
+    font-size: calc(48 / 1440 * 100cqw);
+  }
+
+  .sharedVenueName {
+    font-size: calc(36 / 1440 * 100cqw);
+  }
+
+  .sharedVenueAddr {
+    font-size: calc(27 / 1440 * 100cqw);
+  }
+
+  .thanksTitle {
+    font-size: calc(120 / 1440 * 100cqw);
+  }
+
+  .thanksText {
+    font-size: calc(33 / 1440 * 100cqw);
+  }
+
+  .countdownHeading {
+    font-size: calc(24 / 1440 * 100cqw);
+  }
+
+  .countdownNumber {
+    font-size: calc(54 / 1440 * 100cqw);
+  }
+
+  .countdownLabel {
+    font-size: calc(18 / 1440 * 100cqw);
+  }
+
+  .countdownSeparator {
+    font-size: calc(48 / 1440 * 100cqw);
+  }
+
+  .countdownDone {
+    font-size: calc(48 / 1440 * 100cqw);
+  }
+
+  .photoGalleryHeader {
+    font-size: calc(48 / 1440 * 100cqw);
+  }
+}

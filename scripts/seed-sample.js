@@ -126,7 +126,7 @@ const SAMPLE_DATA = {
     },
   ],
   galleryImages: [],
-  isPaid: true,
+  isPaid: false,
   isActive: true,
   isPublished: true,
   isSample: true,

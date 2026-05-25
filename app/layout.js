@@ -1,6 +1,13 @@
 import './globals.css';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata = {
   title: 'CelebrationApp – Beautiful Wedding Invitations',
   description: 'Create stunning, animated wedding invitation websites in minutes. Choose from beautiful templates, customize with your details, and share a unique link with your guests.',

@@ -289,7 +289,7 @@ export default function InvitePage() {
   }
 
   const { groomName, brideName, weddingDate, tagline, coupleStory, events, groomParents, brideParents, isPaid } = invitation;
-  const showWatermark = !isPaid && !isSample;
+  const showWatermark = !isPaid;
 
   // ─── Login gate for free (non-sample) previews ────────────────────────────
   // If the invitation is not paid, not a sample, and user is not logged in,

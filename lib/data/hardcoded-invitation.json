@@ -1,0 +1,37 @@
+{
+  "groomName": "SaravananKumar",
+  "brideName": "Asritha",
+  "groomParents": "Mrs. Sasilaka",
+  "brideParents": "Mr. Srinivasalu & Mrs. Priya",
+  "weddingDate": "2026-06-18",
+  "tagline": "Two souls, one journey",
+  "templateId": "einvite-1",
+  "isPaid": true,
+  "isSample": true,
+  "coupleStory": "",
+  "galleryImages": [],
+  "events": [
+    {
+      "name": "Post marriage feast",
+      "date": "2026-06-21",
+      "time": "11:30",
+      "venue": "Sri Venkateswara Mahal",
+      "venueAddress": "Pallathur Rd, Latteri, Opp to Nayara petrol pump, Vellore 632202"
+    },
+    {
+      "name": "Wedding Ceremony",
+      "date": "2026-06-18",
+      "time": "09:00",
+      "venue": "GOPALAYA THIRUMANA MANDABAM",
+      "venueAddress": "Katpadi Rd, Rajakovil, National Highway 234, Gandhi Nagar, Gudiyatham, Tamil Nadu 635803",
+      "muhurtham": "09:00 AM - 10:30 AM"
+    },
+    {
+      "name": "Reception",
+      "date": "2026-06-17",
+      "time": "19:00",
+      "venue": "GOPALAYA THIRUMANA MANDABAM",
+      "venueAddress": "Katpadi Rd, Rajakovil, National Highway 234, Gandhi Nagar, Gudiyatham, Tamil Nadu 635803"
+    }
+  ]
+}

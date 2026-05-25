@@ -613,3 +613,340 @@
   text-align: center;
   text-shadow: 0 0 12px rgba(252, 221, 0, 0.5);
 }
+
+/* ==============================================
+   MOBILE RESPONSIVE — Portrait 393×852
+   Based on Figma "Mobile Template 1"
+   ============================================== */
+@media (max-width: 768px) {
+
+  /* ===== Page Heights & Positions (portrait) ===== */
+  .page1 { height: calc(852 / 393 * 100cqw); }
+  .page2 { top: calc(852 / 393 * 100cqw); height: calc(852 / 393 * 100cqw); }
+  .page3 { top: calc(1704 / 393 * 100cqw); height: calc(852 / 393 * 100cqw); }
+  .page4 { top: calc(2556 / 393 * 100cqw); height: calc(852 / 393 * 100cqw); }
+  .page5 { top: calc(3408 / 393 * 100cqw); height: calc(852 / 393 * 100cqw); }
+  .page7 { height: calc(852 / 393 * 100cqw); }
+  /* Pages 6 & 7 top positions are set via JS inline styles */
+
+  /* ===== Page 1: Sky + Peacocks + Names ===== */
+  .page1Bg {
+    left: -25%;
+    width: 150%;
+  }
+
+  .heroNames {
+    top: calc(25 / 393 * 100cqw);
+  }
+
+  .groomName, .brideName {
+    font-size: calc(56 / 393 * 100cqw);
+    line-height: 1.05;
+  }
+
+  .ampersand {
+    font-size: calc(20 / 393 * 100cqw);
+    margin: 0.8cqw 0;
+  }
+
+  .taglineText {
+    font-size: calc(13 / 393 * 100cqw);
+    margin-top: 2cqw;
+  }
+
+  /* ===== Temple Container ===== */
+  .templeContainer {
+    width: 98%;
+  }
+
+  /* ===== Page 2: Temple Courtyard ===== */
+  .page2Bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===== Page 3: Red Carpet + Elephants ===== */
+  .carpetContainer {
+    left: 3%;
+    width: 94%;
+  }
+
+  .elephantsOverlay {
+    left: -2%;
+    width: 104%;
+  }
+
+  .headingMaiandra {
+    font-size: calc(26 / 393 * 100cqw);
+  }
+
+  .smallMaiandra {
+    font-size: calc(15 / 393 * 100cqw);
+    line-height: 1.6;
+  }
+
+  .textImgCenter {
+    width: 24cqw;
+  }
+
+  .weddingDateDisplay {
+    font-size: calc(20 / 393 * 100cqw);
+  }
+
+  /* ===== Page 4: Family & Names ===== */
+  .page4Content {
+    gap: 2cqw;
+    padding: 8cqw 5cqw;
+  }
+
+  .page4Name {
+    font-size: calc(52 / 393 * 100cqw);
+  }
+
+  .page4Weds {
+    font-size: calc(22 / 393 * 100cqw);
+    letter-spacing: 0.2em;
+    margin: 0.5cqw 0;
+  }
+
+  .page4SubText {
+    font-size: calc(15 / 393 * 100cqw);
+  }
+
+  .page4Parents {
+    font-size: calc(17 / 393 * 100cqw);
+    margin-bottom: 1cqw;
+  }
+
+  .page4Border {
+    top: -0.5%;
+  }
+
+  .lampLeft {
+    left: -6%;
+    width: 34%;
+  }
+
+  .lampRight {
+    right: -6%;
+    width: 34%;
+  }
+
+  /* ===== Page 5: Gallery ===== */
+  .polaroidBg {
+    top: -5%;
+    left: -15%;
+    width: 70%;
+    height: 70%;
+    opacity: 0.4;
+  }
+
+  .introText {
+    top: 2%;
+    left: 5%;
+    width: 90%;
+    text-align: center;
+  }
+
+  .introTextLine1 {
+    font-size: calc(26 / 393 * 100cqw);
+    text-align: center;
+  }
+
+  .introTextLine2 {
+    font-size: calc(34 / 393 * 100cqw);
+    text-align: center;
+  }
+
+  .carnations {
+    top: calc(400 / 765 * 100%);
+    left: -8%;
+    width: 116%;
+    opacity: 0.35;
+  }
+
+  .photoGallery {
+    top: 16%;
+    right: 3%;
+    left: 3%;
+    width: 94%;
+    height: 80%;
+  }
+
+  .photoGalleryHeader {
+    font-size: calc(18 / 393 * 100cqw);
+    letter-spacing: 0.15em;
+    margin-bottom: 3cqw;
+  }
+
+  .photoGrid {
+    gap: 2.5cqw;
+  }
+
+  .photoCount3 { grid-template-columns: 1fr 1fr; }
+  .photoCount4 { grid-template-columns: 1fr 1fr; }
+  .photoCount5 { grid-template-columns: 1fr 1fr; }
+
+  .photoCount4 .photoBox:nth-child(4) {
+    grid-column: auto;
+    max-width: none;
+    justify-self: auto;
+  }
+
+  .photoCount5 .photoBox:nth-child(1),
+  .photoCount5 .photoBox:nth-child(2),
+  .photoCount5 .photoBox:nth-child(3),
+  .photoCount5 .photoBox:nth-child(4),
+  .photoCount5 .photoBox:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .photoBox {
+    border-radius: 2.5cqw;
+  }
+
+  /* ===== Page 6: Save the Date ===== */
+  .page6Content {
+    padding: 5cqw 5cqw 0;
+  }
+
+  .saveTheDateTitle {
+    font-size: calc(38 / 393 * 100cqw);
+    margin-bottom: 4cqw;
+  }
+
+  .eventsRow {
+    flex-direction: column;
+    gap: 5cqw;
+    align-items: center;
+  }
+
+  .eventCard6 {
+    min-width: unset;
+    max-width: unset;
+    width: 88%;
+  }
+
+  .eventName6 {
+    font-size: calc(22 / 393 * 100cqw);
+    margin-bottom: 1.2cqw;
+  }
+
+  .eventDetail6 {
+    font-size: calc(14 / 393 * 100cqw);
+  }
+
+  .eventMuhurtham6 {
+    font-size: calc(13 / 393 * 100cqw);
+  }
+
+  .eventVenue6 {
+    font-size: calc(13 / 393 * 100cqw);
+  }
+
+  .eventVenueAddr6 {
+    font-size: calc(12 / 393 * 100cqw);
+  }
+
+  .ambientLightPage6 {
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 40%;
+  }
+
+  .lotusLeft, .lotusRight {
+    width: 130%;
+    left: -15%;
+  }
+
+  .sharedVenue {
+    margin-top: 3cqw;
+    padding: 2cqw 4cqw;
+  }
+
+  .sharedVenueLabel {
+    font-size: calc(22 / 393 * 100cqw);
+  }
+
+  .sharedVenueName {
+    font-size: calc(16 / 393 * 100cqw);
+  }
+
+  .sharedVenueAddr {
+    font-size: calc(13 / 393 * 100cqw);
+  }
+
+  /* ===== Page 7: Thank You + Countdown — stacked vertically ===== */
+  .roundFrameContainer {
+    top: 3%;
+    left: 12%;
+    width: 76%;
+    height: 46%;
+  }
+
+  .roundFrameInnerImage {
+    top: 12%;
+    left: 15%;
+    width: 70%;
+    height: 74%;
+  }
+
+  .page7RightPanel {
+    top: 52%;
+    left: 5%;
+    width: 90%;
+    height: 44%;
+    gap: 2cqw;
+  }
+
+  .thanksTitle {
+    font-size: calc(50 / 393 * 100cqw);
+  }
+
+  .thanksText {
+    font-size: calc(14 / 393 * 100cqw);
+    line-height: 1.5;
+  }
+
+  /* ===== Countdown Timer — mobile ===== */
+  .countdownWrapper {
+    gap: 1.5cqw;
+    margin-top: 1.5cqw;
+  }
+
+  .countdownHeading {
+    font-size: calc(11 / 393 * 100cqw);
+  }
+
+  .countdownRow {
+    gap: 2.5cqw;
+  }
+
+  .countdownBox {
+    padding: 2cqw 2.5cqw 1.2cqw;
+    min-width: 13cqw;
+    border-radius: 2cqw;
+  }
+
+  .countdownNumber {
+    font-size: calc(26 / 393 * 100cqw);
+  }
+
+  .countdownLabel {
+    font-size: calc(8 / 393 * 100cqw);
+    margin-top: 0.5cqw;
+  }
+
+  .countdownSeparator {
+    font-size: calc(22 / 393 * 100cqw);
+    margin-bottom: 1.5cqw;
+  }
+
+  .countdownDone {
+    font-size: calc(24 / 393 * 100cqw);
+  }
+}

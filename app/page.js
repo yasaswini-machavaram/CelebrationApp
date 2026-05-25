@@ -38,6 +38,7 @@ const scaleIn = {
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [allTemplates, setAllTemplates] = useState(templates);
   const [filteredTemplates, setFilteredTemplates] = useState(templates);
@@ -144,26 +145,34 @@ export default function LandingPage() {
           <Link href="/" className={styles.logo}>
             CelebrationApp
           </Link>
-          <ul className={styles.navLinks}>
-            <li><a href="#templates" className={styles.navLink}>Templates</a></li>
-            <li><a href="#how-it-works" className={styles.navLink}>How it Works</a></li>
-            <li><a href="#features" className={styles.navLink}>Features</a></li>
+          {/* Hamburger toggle for mobile */}
+          <button
+            className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
+          <ul className={`${styles.navLinks} ${mobileMenuOpen ? styles.navLinksOpen : ''}`}>
+            <li><a href="#templates" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>Templates</a></li>
+            <li><a href="#how-it-works" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>How it Works</a></li>
+            <li><a href="#features" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>Features</a></li>
             {!authLoading && (
               <>
                 {user ? (
                   <>
-                    <li><Link href="/subscriptions" className={styles.navUser} title="My Subscriptions">My Subscriptions ({user.username})</Link></li>
+                    <li><Link href="/subscriptions" className={styles.navUser} title="My Subscriptions" onClick={() => setMobileMenuOpen(false)}>My Subscriptions ({user.username})</Link></li>
                     <li>
-                      <button onClick={handleLogout} className={styles.navLink} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                      <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className={styles.navLink} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                         Logout
                       </button>
                     </li>
                   </>
                 ) : (
                   <>
-                    <li><Link href="/login" className={styles.navLink}>Login</Link></li>
+                    <li><Link href="/login" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>Login</Link></li>
                     <li>
-                      <Link href="/signup" className={`btn-primary ${styles.navCta}`}>
+                      <Link href="/signup" className={`btn-primary ${styles.navCta}`} onClick={() => setMobileMenuOpen(false)}>
                         Sign Up
                       </Link>
                     </li>
