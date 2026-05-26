@@ -5,15 +5,15 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './EinviteTemplate1.module.css';
 
 /**
- * EinviteTemplate1 — Full pages 1-7 layout
+ * EinviteTemplate1 — Full layout (Page 2 removed on mobile only)
  *
  * Page 1: Sky, peacocks, names, tagline          (y: 0 – 760)
- * Page 2: Temple courtyard                        (y: 760 – 1521)
- * Page 3: Red carpet, Ganesha, wedding date       (y: 1521 – 2281)
- * Page 4: Family intro, names, weds              (y: 2281 – 3039)
- * Page 5: Introducing polaroid + gallery         (y: 3039 – 3804, only if photos)
- * Page 6: Save the Date, events, shared venue    (y: 3804|3039 – 4564|3799)
- * Page 7: Round frame, Thank You, countdown      (y: 4564|3799 – 5324|4559)
+ * Page 2: Temple courtyard (desktop only)        (y: 760 – 1521)
+ * Page 3: Red carpet, Ganesha, wedding date       (y: 1521|760 – 2281|1520)
+ * Page 4: Family intro, names, weds              (y: 2281|1520 – 3039|2278)
+ * Page 5: Introducing polaroid + gallery         (y: 3039|2278 – 3804|3043, only if photos)
+ * Page 6: Save the Date, events, shared venue    (y: 3804|3043|3039|2278 – 4564|3803|3799|3038)
+ * Page 7: Round frame, Thank You, countdown      (y: 4564|3803|3799|3038 – 5324|4563|4559|3798)
  */
 
 // ─── Countdown hook ─────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ function MusicPlayer({ groomName, brideName }) {
     const audio = audioRef.current;
     if (audio) {
       audio.volume = 0.5;
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+      audio.play().then(() => setIsPlaying(true)).catch(() => { });
     }
   };
 
@@ -104,7 +104,7 @@ function MusicPlayer({ groomName, brideName }) {
       audio.pause();
       setIsPlaying(false);
     } else {
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+      audio.play().then(() => setIsPlaying(true)).catch(() => { });
     }
   };
 
@@ -188,8 +188,8 @@ export default function EinviteTemplate1({ invitation = {} }) {
     ? (events.length <= 2 ? 852 : 1050)
     : (events.length <= 2 ? 760 : 960);
   const page6Top = hasPhotos
-    ? (isMobile ? 5 * PH : 3804)
-    : (isMobile ? 4 * PH : 3039);
+    ? (isMobile ? 4 * PH : 3804)
+    : (isMobile ? 3 * PH : 3039);
   const page7Top = page6Top + page6Height;
 
   // Canvas total height adjusts with dynamic page 6
@@ -200,14 +200,12 @@ export default function EinviteTemplate1({ invitation = {} }) {
     offset: ['start start', 'end start'],
   });
 
-  // Temple rises as the user scrolls into Page 2
-  const templeStartPct = isMobile
-    ? (hasPhotos ? '5.2%' : '6%')
-    : (hasPhotos ? '7.42%' : '8.62%');
-  const templeEndPct = isMobile
-    ? (hasPhotos ? '10%' : '11.5%')
-    : (hasPhotos ? '11.77%' : '13.7%');
-  const templeScrollEnd = isMobile ? PH * 1.6 : 1490;
+  // Temple rises as the user scrolls
+  const templeStartPx = isMobile ? 310 : 400;
+  const templeEndPx = isMobile ? 440 : 630;
+  const templeStartPct = `${(templeStartPx / totalHeight) * 100}%`;
+  const templeEndPct = `${(templeEndPx / totalHeight) * 100}%`;
+  const templeScrollEnd = isMobile ? PH * 0.7 : 1490;
   const templeTop = useTransform(
     scrollYProgress,
     [0, templeScrollEnd / totalHeight],
@@ -215,8 +213,8 @@ export default function EinviteTemplate1({ invitation = {} }) {
   );
 
   // Carpet unrolls as Page 3 enters the viewport
-  const carpetStart = isMobile ? PH * 1.2 : 1064;
-  const carpetEnd = isMobile ? PH * 2.2 : 1703;
+  const carpetStart = isMobile ? PH * 0.2 : 1064;
+  const carpetEnd = isMobile ? PH * 1.2 : 1703;
   const carpetClipPath = useTransform(
     scrollYProgress,
     [carpetStart / totalHeight, carpetEnd / totalHeight],
@@ -224,7 +222,7 @@ export default function EinviteTemplate1({ invitation = {} }) {
   );
 
   // Page 3 text fades in WHILE the carpet is unrolling
-  const carpetTextStart = isMobile ? PH * 1.5 : 1200;
+  const carpetTextStart = isMobile ? PH * 0.5 : 1200;
   const carpetTextOpacity = useTransform(
     scrollYProgress,
     [carpetTextStart / totalHeight, carpetEnd / totalHeight],
@@ -274,12 +272,14 @@ export default function EinviteTemplate1({ invitation = {} }) {
           </motion.div>
         </div>
 
-        {/* ========== PAGE 2: TEMPLE COURTYARD ========== */}
-        <div className={`${styles.sectionBlock} ${styles.page2}`}>
-          <div className={styles.page2Bg}>
-            <img src="/assets/einvite-template1/fresh/page2-bg.png" alt="Temple courtyard" className={styles.imgCover} />
+        {/* ========== PAGE 2: TEMPLE COURTYARD (Desktop Only) ========== */}
+        {!isMobile && (
+          <div className={`${styles.sectionBlock} ${styles.page2}`}>
+            <div className={styles.page2Bg}>
+              <img src="/assets/einvite-template1/fresh/page2-bg.png" alt="Temple courtyard" className={styles.imgCover} />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* ========== ANIMATED TEMPLE ========== */}
         <motion.div className={styles.templeContainer} style={{ top: templeTop }}>
@@ -295,8 +295,11 @@ export default function EinviteTemplate1({ invitation = {} }) {
           <motion.div className={styles.carpetContainer} style={{ clipPath: carpetClipPath }}>
             <img src="/assets/einvite-template1/fresh/carpet.png" alt="Red carpet" className={styles.imgCover} />
           </motion.div>
-          <div className={styles.elephantsOverlay}>
-            <img src="/assets/einvite-template1/fresh/elephants.png" alt="Elephants" className={styles.imgContain} />
+          <div className={styles.elephantLeft}>
+            <img src="/assets/einvite-template1/fresh/elephant.png" alt="Elephant Left" className={styles.imgContain} />
+          </div>
+          <div className={styles.elephantRight}>
+            <img src="/assets/einvite-template1/fresh/elephant.png" alt="Elephant Right" className={styles.imgContain} />
           </div>
           {/* Text reveals only after carpet is fully scrolled into view */}
           <motion.div className={styles.page3Content} style={{ opacity: carpetTextOpacity, y: carpetTextY }}>
@@ -344,7 +347,7 @@ export default function EinviteTemplate1({ invitation = {} }) {
 
           {/* Text Overlay — staggered fade-up on scroll */}
           <div className={styles.page4Content}>
-            {[  
+            {[
               { cls: styles.page4SubText, content: 'Son Of', delay: 0 },
               { cls: styles.page4Parents, content: groomParents || 'Mr. & Mrs. Jayakumar', delay: 0.1 },
               { cls: styles.page4Name, content: groomName, delay: 0.2 },
@@ -369,64 +372,64 @@ export default function EinviteTemplate1({ invitation = {} }) {
 
         {/* ========== PAGE 5: INTRODUCING POLAROID (only if photos) ========== */}
         {hasPhotos && (
-        <div className={`${styles.sectionBlock} ${styles.page5}`}>
-          <div className={`${styles.fillBlock} ${styles.page5Gradient}`} />
-          <div className={`${styles.fillBlock} ${styles.page5Pattern}`}>
-            <img src="/assets/einvite-template1/fresh/page5-pattern.png" alt="Page 5 Pattern" className={styles.imgCover} />
-          </div>
+          <div className={`${styles.sectionBlock} ${styles.page5}`}>
+            <div className={`${styles.fillBlock} ${styles.page5Gradient}`} />
+            <div className={`${styles.fillBlock} ${styles.page5Pattern}`}>
+              <img src="/assets/einvite-template1/fresh/page5-pattern.png" alt="Page 5 Pattern" className={styles.imgCover} />
+            </div>
 
-          <div className={styles.polaroidBg}>
-            <img src="/assets/einvite-template1/fresh/page5-polaroid-clean.png" alt="Paper" className={styles.imgContain} />
-          </div>
+            <div className={styles.polaroidBg}>
+              <img src="/assets/einvite-template1/fresh/page5-polaroid-clean.png" alt="Paper" className={styles.imgContain} />
+            </div>
 
-          {/* Text fade up */}
-          <motion.div
-            className={styles.introText}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className={styles.introTextLine1}>Introducing The</div>
-            <div className={styles.introTextLine2}>Groom And Bride</div>
-          </motion.div>
-
-          {/* Rose falls after 15% of section is visible */}
-          <motion.div
-            className={styles.carnations}
-            initial={{ y: -300, opacity: 0, rotate: -5 }}
-            whileInView={{ y: 0, opacity: 1, rotate: 0 }}
-            viewport={{ once: true, margin: '0px 0px -85% 0px' }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <img src="/assets/einvite-template1/page3/4th-page-flower.png" alt="Rose Carnations" className={styles.imgContain} />
-          </motion.div>
-
-          {/* Photo Gallery */}
-          <div className={styles.photoGallery}>
+            {/* Text fade up */}
             <motion.div
-              className={styles.photoGalleryHeader}
-              initial={{ opacity: 0, y: 16 }}
+              className={styles.introText}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >WHERE OUR STORY BEGINS!</motion.div>
-            <div className={`${styles.photoGrid} ${styles[`photoCount${Math.min(galleryImages.length, 5)}`]}`}>
-              {galleryImages.slice(0, 5).map((src, i) => (
-                <motion.div
-                  key={i}
-                  className={styles.photoBox}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 * i, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <img src={src} alt={`Gallery ${i + 1}`} />
-                </motion.div>
-              ))}
+            >
+              <div className={styles.introTextLine1}>Introducing The</div>
+              <div className={styles.introTextLine2}>Groom And Bride</div>
+            </motion.div>
+
+            {/* Rose falls after 15% of section is visible */}
+            <motion.div
+              className={styles.carnations}
+              initial={{ y: -300, opacity: 0, rotate: -5 }}
+              whileInView={{ y: 0, opacity: 1, rotate: 0 }}
+              viewport={{ once: true, margin: '0px 0px -85% 0px' }}
+              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src="/assets/einvite-template1/page3/4th-page-flower.png" alt="Rose Carnations" className={styles.imgContain} />
+            </motion.div>
+
+            {/* Photo Gallery */}
+            <div className={styles.photoGallery}>
+              <motion.div
+                className={styles.photoGalleryHeader}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >WHERE OUR STORY BEGINS!</motion.div>
+              <div className={`${styles.photoGrid} ${styles[`photoCount${Math.min(galleryImages.length, 5)}`]}`}>
+                {galleryImages.slice(0, 5).map((src, i) => (
+                  <motion.div
+                    key={i}
+                    className={styles.photoBox}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 * i, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <img src={src} alt={`Gallery ${i + 1}`} />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
         )}
 
         {/* ========== PAGE 6: SAVE THE DATE ========== */}
@@ -506,6 +509,39 @@ export default function EinviteTemplate1({ invitation = {} }) {
                 {sharedVenueAddress && <div className={styles.sharedVenueAddr}>{sharedVenueAddress}</div>}
               </motion.div>
             )}
+
+            {/* Google Maps Embed */}
+            <motion.div
+              className={styles.mapContainer}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <a
+                href="https://maps.app.goo.gl/HRidhZvbv4LGWS8D8?g_st=aw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mapLink}
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.5!2d78.87!3d12.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad6dc5d18747db%3A0x98dadc813a9b4ba1!2sGOPALAYA%20THIRUMANA%20MANDABAM!5e0!3m2!1sen!2sin!4v1"
+                  className={styles.mapIframe}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Venue Location"
+                />
+              </a>
+              <a
+                href="https://maps.app.goo.gl/HRidhZvbv4LGWS8D8?g_st=aw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mapDirectionsBtn}
+              >
+                📍 Get Directions
+              </a>
+            </motion.div>
           </div>
         </div>
 

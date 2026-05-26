@@ -293,14 +293,39 @@
   will-change: clip-path;
 }
 
-.elephantsOverlay {
+.elephantLeft {
   position: absolute;
-  top: 0;
-  left: 2.57%;
-  width: 94.86%;
-  height: 100%;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  height: 50%;
   z-index: 5;
   pointer-events: none;
+}
+
+.elephantLeft img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom left;
+}
+
+.elephantRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  height: 50%;
+  z-index: 5;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.elephantRight img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom left;
 }
 
 /* ================= PAGE 4 ================= */
@@ -838,6 +863,61 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* ================= MAP EMBED ================= */
+.mapContainer {
+  margin-top: 1.5cqw;
+  width: 60%;
+  position: relative;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8cqw;
+}
+
+.mapLink {
+  display: block;
+  width: 100%;
+  border-radius: 1.2cqw;
+  overflow: hidden;
+  border: 2px solid rgba(252, 221, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.mapIframe {
+  display: block;
+  width: 100%;
+  height: 14cqw;
+  border: none;
+  pointer-events: auto;
+}
+
+.mapDirectionsBtn {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: calc(18 / 1440 * 100cqw);
+  color: #FCDD00;
+  text-decoration: none;
+  padding: 0.5cqw 2cqw;
+  border: 1.5px solid rgba(252, 221, 0, 0.5);
+  border-radius: 3cqw;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 12;
+}
+
+.mapDirectionsBtn:hover {
+  background: rgba(252, 221, 0, 0.15);
+  border-color: rgba(252, 221, 0, 0.9);
+  box-shadow: 0 0 15px rgba(252, 221, 0, 0.2);
+  transform: scale(1.05);
+}
+
 /* ================= PAGE 7 ================= */
 .page7 {
   height: calc(760 / 1440 * 100cqw);
@@ -890,6 +970,8 @@
   width: calc(654.02 / 1440 * 100%);
   height: calc(635.1 / 760 * 100%);
   z-index: 5;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .roundFrameOverlay {
@@ -905,10 +987,10 @@
 
 .roundFrameInnerImage {
   position: absolute;
-  top: 13%;
-  left: 16%;
-  width: 68%;
-  height: 72%;
+  top: 18%;
+  left: 14%;
+  width: 72%;
+  height: 75%;
   object-fit: cover;
   border-radius: 50%;
   z-index: 1;
@@ -1156,23 +1238,18 @@
     height: calc(852 / 393 * 100cqw);
   }
 
-  .page2 {
+  .page3 {
     top: calc(852 / 393 * 100cqw);
     height: calc(852 / 393 * 100cqw);
   }
 
-  .page3 {
+  .page4 {
     top: calc(1704 / 393 * 100cqw);
     height: calc(852 / 393 * 100cqw);
   }
 
-  .page4 {
-    top: calc(2556 / 393 * 100cqw);
-    height: calc(852 / 393 * 100cqw);
-  }
-
   .page5 {
-    top: calc(3408 / 393 * 100cqw);
+    top: calc(2556 / 393 * 100cqw);
     height: calc(852 / 393 * 100cqw);
   }
 
@@ -1216,16 +1293,7 @@
 
   /* ===== Temple Container ===== */
   .templeContainer {
-    width: 95%;
-  }
-
-  /* ===== Page 2: Temple Courtyard ===== */
-  .page2Bg {
-    position: absolute;
-    top: 0;
-    left: -10%;
-    width: 120%;
-    height: 100%;
+    width: 145%;
   }
 
   /* ===== Page 3: Red Carpet + Elephants ===== */
@@ -1238,12 +1306,14 @@
     width: 94%;
   }
 
-  .elephantsOverlay {
-    left: -2%;
-    width: 104%;
-    top: auto;
-    bottom: 0;
-    height: 40%;
+  .elephantLeft {
+    width: 28%;
+    height: 35%;
+  }
+
+  .elephantRight {
+    width: 28%;
+    height: 35%;
   }
 
   .textLine1 {
@@ -1312,13 +1382,22 @@
   }
 
   .lampLeft {
+    top: 0;
     left: -6%;
     width: 34%;
+    height: 20%;
   }
 
   .lampRight {
+    top: 0;
     right: -6%;
     width: 34%;
+    height: 20%;
+  }
+
+  .garlandStr {
+    background-size: 600% auto;
+    background-position-y: top;
   }
 
   /* ===== Page 5: Gallery ===== */
@@ -1494,6 +1573,27 @@
     font-size: calc(14 / 393 * 100cqw);
   }
 
+  /* ===== Map Embed — mobile ===== */
+  .mapContainer {
+    width: 90%;
+    margin-top: 3cqw;
+    gap: 2cqw;
+  }
+
+  .mapIframe {
+    height: 40cqw;
+  }
+
+  .mapLink {
+    border-radius: 2.5cqw;
+  }
+
+  .mapDirectionsBtn {
+    font-size: calc(14 / 393 * 100cqw);
+    padding: 1.5cqw 5cqw;
+    border-radius: 5cqw;
+  }
+
   /* ===== Page 7: Thank You + Countdown — stacked vertically ===== */
   .page7Border {
     z-index: 6;
@@ -1504,20 +1604,22 @@
     left: 14%;
     width: 72%;
     height: 44%;
+    overflow: visible;
+    border-radius: 0;
   }
 
   .roundFrameInnerImage {
-    top: 13%;
-    left: 16%;
-    width: 68%;
-    height: 72%;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 65%;
   }
 
   .page7RightPanel {
-    top: 48%;
+    top: 44%;
     left: 5%;
     width: 90%;
-    height: 50%;
+    height: 54%;
     gap: 1.5cqw;
   }
 
